@@ -1,0 +1,41 @@
+:root {
+  /* variables */
+  --clr-primary: rgba(23, 27, 58, 0.3);
+  --clr-bg: #fff;
+  --clr-bg-nav: rgba(23, 27, 58, 0.5);
+  --clr-bg-signup: rgb(177 58 58);
+  --clr-white: #fff;
+  --clr-login: rgb(177 58 50);
+}
+
+html {
+  font-size: 62.5%;
+  font-family: "Poppins", sans-serif;
+}
+
+a,
+ul {
+  text-decoration: none;
+}
+
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  display: grid;
+  height: 100vh;
+  place-items: center;
+  /* border: solid 1px yellow; */
+}
+
+.title {
+  font-size: 4rem;
+  color: var(--clr-white);
+  margin: 0 auto;
+}
