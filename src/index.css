@@ -5,7 +5,7 @@
   --clr-bg-nav: rgba(23, 27, 58, 0.5);
   --clr-bg-signup: rgb(177 58 58);
   --clr-white: #fff;
-  --clr-login: rgb(177 58 50);
+  --clr-bg-login: rgb(177 58 50);
 }
 
 html {
@@ -16,6 +16,8 @@ html {
 a,
 ul {
   text-decoration: none;
+  list-style-type: none;
+  color: var(--clr-white);
 }
 
 ::after,
@@ -31,11 +33,22 @@ body {
   display: grid;
   height: 100vh;
   place-items: center;
-  /* border: solid 1px yellow; */
+  position: relative;
+  /* border: solid 2px yellow; */
 }
 
 .title {
   font-size: 4rem;
   color: var(--clr-white);
   margin: 0 auto;
+}
+
+.btn-global {
+  background-color: var(--clr-bg-login);
+  padding: 1rem;
+  color: var(--clr-white);
+  font-size: 1.5rem;
+  outline: none;
+  border: none;
+  border-radius: 5px;
 }

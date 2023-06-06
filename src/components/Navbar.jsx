@@ -1,11 +1,12 @@
 import Wrapper from "../styleWrappers/stylesNavbar";
 import { useGlobalContext } from "../contextAPI";
-import { useNavigate, NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import supabase from "../config/supabaseClient";
 
 const Navbar = () => {
-  const { setAuth, auth, login, setLogin, userData } = useGlobalContext();
+  const { setToken, login, setLogin, userData, token } = useGlobalContext();
   const navigate = useNavigate();
+  console.log(token);
 
   const handleLogin = () => {
     setLogin(true);
@@ -16,7 +17,7 @@ const Navbar = () => {
     try {
       const { error } = await supabase.auth.signOut();
       if (error) throw error;
-      setAuth(false);
+      setToken(false);
       setLogin(!login);
       navigate("/");
       console.log(userData);
@@ -26,6 +27,7 @@ const Navbar = () => {
   };
 
   const handleSignUp = () => {
+    navigate("/register");
     setLogin(true);
   };
 
@@ -38,32 +40,46 @@ const Navbar = () => {
             alt="uwc-logo"
           />
         </li> */}
-        {login ? (
-          ""
+        {token ? (
+          <ul className="navButtons">
+            <li className="welcome-title">
+              <h3>
+                <span>Welcome, </span>
+                {token.user.user_metadata.name}
+              </h3>
+            </li>
+            <li onClick={handleLogout} className="nav-button btn-login">
+              Logout
+            </li>
+          </ul>
         ) : (
-          <li onClick={handleLogin} className="login">
-            Login
-          </li>
-        )}
-        {auth ? (
-          <li onClick={handleLogout} className="login">
-            Logout
-          </li>
-        ) : (
-          ""
-        )}
-        {auth ? (
-          ""
-        ) : (
-          <NavLink to="/register">
-            <li onClick={handleSignUp} className="signup">
+          <ul className="navButtons">
+            <li onClick={handleLogin} className="nav-button btn-login">
+              Login
+            </li>
+            <li onClick={handleSignUp} className="nav-button btn-signup">
               sign up
             </li>
-          </NavLink>
+          </ul>
         )}
       </ul>
     </Wrapper>
   );
 };
 
+// (
+//   <li onClick={handleSignUp} className="signup">
+//     sign up
+//   </li>
+// )
+
+// {auth ? (
+//   ""
+// ) : (
+//   <NavLink to="/register">
+//     <li onClick={handleSignUp} className="signup">
+//       sign up
+//     </li>
+//   </NavLink>
+// )}
 export default Navbar;

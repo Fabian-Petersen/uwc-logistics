@@ -1,28 +1,25 @@
-import "./App.css";
+// import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Dashboard from "./pages/Dashboard";
-import Register from "./pages/Register";
-// import Vehicles from "./components/Vehicles";
+import { Dashboard, Register, Booking } from "./pages/index";
 import Home from "../src/pages/Home";
-import Navbar from "./components/Navbar";
-// import Error from "./components/Error";
-import AppProvider from "./contextAPI";
+import { Navbar, Sidebar } from "./components";
 import { useGlobalContext } from "./contextAPI";
 
-function App() {
+const App = () => {
   const { token } = useGlobalContext();
+
   return (
-    <AppProvider>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          {token ? <Route path="dashboard" element={<Dashboard />} /> : ""}
-          <Route path="register" element={<Register />} />
-        </Routes>
-      </Router>
-    </AppProvider>
+    <Router>
+      <Navbar />
+      <Sidebar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        {token ? <Route path="dashboard" element={<Dashboard />} /> : ""}
+        {token ? <Route path="booking" element={<Booking />} /> : ""}
+        <Route path="register" element={<Register />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;

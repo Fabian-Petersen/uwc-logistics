@@ -5,10 +5,13 @@ import { useGlobalContext } from "../contextAPI";
 import supabase from "../config/supabaseClient";
 
 const Login = () => {
+  //$ 1. ====== use navigate hook to redirect the page to the dashboard once logged in. ====== //
   const navigate = useNavigate();
-  const { setAuth, userData, setUserData } = useGlobalContext();
-  // console.log("email:", registerUser.email, "password:", registerUser.password);
 
+  //$ 2. ====== use context hook to to manage the state variables to be used in application ====== //
+  const { setToken, userData, setUserData, token } = useGlobalContext();
+
+  //$ 3. ====== handle the values entered by the user in the login form and store the data in the userData variable. ====== //
   const handleChange = (e) => {
     setUserData((prevUserDate) => {
       return {
@@ -18,6 +21,7 @@ const Login = () => {
     });
   };
 
+  //$ 4. ====== handle the submission of the form and accessing the data from supabase. ====== //
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -25,15 +29,18 @@ const Login = () => {
         email: userData.email,
         password: userData.password,
       });
-      console.log(data);
+      setUserData(data);
+      setToken(data);
       if (error) throw Error;
     } catch (error) {
       console.log(error);
     }
-    setAuth(true);
+    // setToken(data);
     navigate("/dashboard");
   };
 
+  console.log(token);
+  //$ 5. ====== Render the login component  ====== //
   return (
     <Wrapper>
       <form className="login-container" onSubmit={handleSubmit}>
