@@ -1,11 +1,12 @@
 :root {
   /* variables */
-  --clr-primary: rgba(23, 27, 58, 0.3);
-  --clr-bg: #fff;
-  --clr-bg-nav: rgba(23, 27, 58, 0.5);
+  --clr-primary: #0079ff;
+  --clr-bg-form: #f8f6f4;
+  --clr-bg-sideNav: #d8c4b6;
   --clr-bg-signup: rgb(177 58 58);
   --clr-white: #fff;
   --clr-bg-login: rgb(177 58 50);
+  --clr-font-dark: #2b2a4c;
 }
 
 html {
@@ -44,11 +45,17 @@ body {
 }
 
 .btn-global {
-  background-color: var(--clr-bg-login);
+  background-color: var(--clr-primary);
   padding: 1rem;
   color: var(--clr-white);
-  font-size: 1.5rem;
+  font-size: 2rem;
   outline: none;
   border: none;
   border-radius: 5px;
+  transition: transform 0.2s ease;
+}
+
+.btn-global:hover {
+  cursor: pointer;
+  transform: translateY(-3px);
 }

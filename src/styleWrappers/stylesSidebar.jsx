@@ -13,7 +13,7 @@ const Wrapper = styled.ul`
 
   nav.navClosed > ul.sidebarContainer > li:hover {
     cursor: default;
-    background-color: darkgray;
+    /* background-color: darkgray; */
   }
 
   nav {
@@ -28,7 +28,8 @@ const Wrapper = styled.ul`
     flex-direction: column;
     gap: 2.5rem;
     transition: all 0.35s ease-in;
-    background-color: green;
+    background-color: var(--clr-bg-sideNav);
+    color: var(--clr-font-dark);
   }
 
   .bars {
@@ -37,7 +38,7 @@ const Wrapper = styled.ul`
     font-size: 3rem;
     right: 2rem;
     top: 1rem;
-    color: lightgray;
+    color: var(--clr-bg-login);
   }
 
   .bars:hover {
@@ -53,17 +54,14 @@ const Wrapper = styled.ul`
     justify-content: flex-start;
     margin-top: 5rem;
     align-content: center;
-    /* margin-left: 2rem; */
     width: 100%;
     padding: 0;
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
   }
 
   .title {
-    /* margin: 0 auto; */
     font-size: 2rem;
     padding: 0 1rem;
-    border: 2px solid red;
   }
 
   .title-icon {

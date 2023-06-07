@@ -66,6 +66,20 @@ const AppProvider = ({ children }) => {
   //$ 10. ====== State to open and close the sidebar  ====== //
   const [openNav, setOpenNav] = useState(false);
 
+  //$ 11. ====== Booking Component - State of the initial form to book a vehicle  ====== //
+  const [booking, setBooking] = useState({
+    vehicle: "",
+    reason: "",
+    start_km: "",
+    end_km: "",
+    start_time: "",
+    end_time: "",
+    start_date: "",
+    end_date: "",
+    driver: "",
+  });
+  // console.log(booking);
+
   useEffect(() => {
     if (sessionStorage.getItem("token")) {
       const data = JSON.parse(sessionStorage.getItem("token"));
@@ -97,6 +111,8 @@ const AppProvider = ({ children }) => {
         setToken,
         openNav,
         setOpenNav,
+        booking,
+        setBooking,
       }}
     >
       {children}
@@ -104,7 +120,7 @@ const AppProvider = ({ children }) => {
   );
 };
 
-//$ 7. ====== Custom hook for global state management  ====== //
+//$ 12. ====== Custom hook for global state management  ====== //
 export const useGlobalContext = () => {
   return useContext(AppContext);
 };

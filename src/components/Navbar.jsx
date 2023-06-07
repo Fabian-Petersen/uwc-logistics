@@ -6,7 +6,7 @@ import supabase from "../config/supabaseClient";
 const Navbar = () => {
   const { setToken, login, setLogin, userData, token } = useGlobalContext();
   const navigate = useNavigate();
-  console.log(token);
+  // console.log(token);
 
   const handleLogin = () => {
     setLogin(true);

@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 const Wrapper = styled.main`
   .booking_Container {
-    border: 2px solid blue;
-    width: 80vw;
-    height: 100vh;
+    /* border: 2px solid blue; */
+    width: 60vw;
+    height: 80vh;
     margin-top: 5rem;
     display: flex;
     flex-direction: column;
@@ -14,46 +14,54 @@ const Wrapper = styled.main`
 
   h1 {
     font-size: 5rem;
-    border: 2px solid red;
-    margin: 3rem 0;
+    /* border: 2px solid red; */
+    margin: 0.5rem auto;
   }
 
   form {
     display: flex;
     flex-direction: column;
-    /* justify-content: space-evenly; */
-    /* background-color: rgba(25, 252, 250); */
-    width: 60%;
-    border: 1px solid red;
+    width: 100%;
+    gap: 1rem;
+    background-color: var(--clr-bg-form);
+    border-radius: 10px;
+    padding: 2rem;
+    color: var(--clr-primary);
   }
 
-  input {
-    /* display: inline-block; */
-    /* border: 1px solid red; */
-    /* width: 50%; */
-    /* height: 3rem; */
-    /* margin-right: 1rem; */
+  label,
+  input,
+  select {
+    width: 100%;
+    /* padding: 1rem; */
+  }
+
+  .flex_column {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    /* gap: 1rem; */
+    /* border: 1px solid green; */
   }
 
   label {
+    font-size: 2rem;
+    height: 3.5rem;
     /* border: 1px solid yellow; */
+  }
+
+  input,
+  option,
+  select {
+    /* border: 1px solid red; */
     font-size: 1.5rem;
-    height: 3rem;
-    /* padding: 1rem; */
-    /* width: 50%; */
+    height: 5rem;
+    border-radius: 5px;
+    padding: 1rem;
   }
 
   .row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    border: 1px solid green;
-    /* padding: 3rem; */
-    /* height: 100%; */
-    /* gap: 2rem; */
-    /* width: 100%; */
-  }
-
-  btn-global {
+    margin-bottom: 2rem;
   }
 `;
 
