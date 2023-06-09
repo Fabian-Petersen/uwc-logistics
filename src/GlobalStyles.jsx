@@ -1,3 +1,6 @@
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyles = createGlobalStyle`
 :root {
   /* variables */
   --clr-primary: #0079ff;
@@ -7,11 +10,16 @@
   --clr-white: #fff;
   --clr-bg-login: rgb(177 58 50);
   --clr-font-dark: #2b2a4c;
+
+
+/* animation variables */
+--transform-2: translateY(-2px);
+
+
 }
 
 html {
   font-size: 62.5%;
-  font-family: "Poppins", sans-serif;
 }
 
 a,
@@ -21,10 +29,13 @@ ul {
   color: var(--clr-white);
 }
 
-::after,
-::before {
-  margin: 0;
+*,
+*::after,
+*::before {
+box-sizing:border-box;
+margin: 0;
   padding: 0;
+  transition:background-color 0.3s ease;
 }
 
 body {
@@ -32,9 +43,10 @@ body {
   margin: 0;
   box-sizing: border-box;
   display: grid;
-  height: 100vh;
+  min-height: 100vh;
   place-items: center;
   position: relative;
+  font-family: "Poppins", sans-serif;
   /* border: solid 2px yellow; */
 }
 
@@ -46,8 +58,9 @@ body {
 
 .btn-global {
   background-color: var(--clr-primary);
-  padding: 1rem;
+  ${"" /* padding: 1rem; */}
   color: var(--clr-white);
+  height:3.5rem;
   font-size: 2rem;
   outline: none;
   border: none;
@@ -57,5 +70,26 @@ body {
 
 .btn-global:hover {
   cursor: pointer;
-  transform: translateY(-3px);
+  transform: var(--transform-2);
 }
+
+.section {
+  position: absolute;
+  top: 20%;
+  left: 25%;
+  width: 75vw;
+  height: 100vh;
+}
+
+.section_title {
+  position: absolute;
+  top: 10%;
+  left: 25%;
+  color: var(--clr-primary);
+  font-size: 5rem;
+  margin: 0.5rem auto;
+}
+
+`;
+
+export default GlobalStyles;

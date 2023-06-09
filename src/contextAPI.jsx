@@ -8,7 +8,6 @@ export const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
   const [fetchError, setFetchError] = useState(null);
-  const [vehicles, setVehicles] = useState([]);
   const [users, setUsers] = useState([]);
 
   //$ 2. ====== Login Component - State of the successful login token, initial value false ====== //
@@ -39,6 +38,18 @@ const AppProvider = ({ children }) => {
   const [userData, setUserData] = useState({ email: "", password: "" });
 
   //$ 8. ====== Fetch the vehicles data from supabase stored in the vehicles table ====== //
+  const [vehicles, setVehicles] = useState(
+    []
+    //   {
+    //   name: "",
+    //   model: "",
+    //   year: "",
+    //   registration: "",
+    //   start_km: "",
+    //   available: true,
+    // }
+  );
+
   useEffect(() => {
     const fetchVehicles = async () => {
       const { data, error } = await supabase.from("vehicles").select("*");
@@ -52,9 +63,9 @@ const AppProvider = ({ children }) => {
       if (data) {
         setFetchError(false);
         setVehicles(data);
+        // setVehicles(data.filter((item) => item.available === true));
       }
     };
-
     fetchVehicles();
   }, []);
 
@@ -64,9 +75,12 @@ const AppProvider = ({ children }) => {
   }
 
   //$ 10. ====== State to open and close the sidebar  ====== //
-  const [openNav, setOpenNav] = useState(false);
+  const [openNav, setOpenNav] = useState(true);
 
-  //$ 11. ====== Booking Component - State of the initial form to book a vehicle  ====== //
+  //$ 11. ====== Return Component - State to show availability of the vehicle ====== //
+  const [available, setAvailable] = useState(true);
+
+  //$ 12. ====== Booking Component - State of the initial form to book a vehicle  ====== //
   const [booking, setBooking] = useState({
     vehicle: "",
     reason: "",
@@ -77,14 +91,22 @@ const AppProvider = ({ children }) => {
     start_date: "",
     end_date: "",
     driver: "",
+    available: false,
   });
-  // console.log(booking);
+
+  //$ 13. ====== Return Component - State of the initial form to return a vehicle  ====== //
+  const [returnVehicle, setReturnVehicle] = useState({
+    vehicle: "",
+    end_km: "",
+    end_time: "",
+    driver: "",
+    available: false,
+  });
 
   useEffect(() => {
     if (sessionStorage.getItem("token")) {
       const data = JSON.parse(sessionStorage.getItem("token"));
       setToken(data);
-      //setUserData(userData);
     }
   }, []);
 
@@ -113,6 +135,10 @@ const AppProvider = ({ children }) => {
         setOpenNav,
         booking,
         setBooking,
+        available,
+        setAvailable,
+        returnVehicle,
+        setReturnVehicle,
       }}
     >
       {children}

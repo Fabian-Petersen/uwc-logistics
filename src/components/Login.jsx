@@ -9,7 +9,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   //$ 2. ====== use context hook to to manage the state variables to be used in application ====== //
-  const { setToken, userData, setUserData, token } = useGlobalContext();
+  const { setToken, userData, setUserData } = useGlobalContext();
 
   //$ 3. ====== handle the values entered by the user in the login form and store the data in the userData variable. ====== //
   const handleChange = (e) => {
@@ -35,11 +35,10 @@ const Login = () => {
     } catch (error) {
       console.log(error);
     }
-    // setToken(data);
     navigate("/dashboard");
   };
 
-  console.log(token);
+  // console.log(token);
   //$ 5. ====== Render the login component  ====== //
   return (
     <Wrapper>
@@ -59,7 +58,7 @@ const Login = () => {
           placeholder="password"
           onChange={handleChange}
         />
-        <button className="button">Login</button>
+        <button className="btn-global">Submit</button>
       </form>
     </Wrapper>
   );

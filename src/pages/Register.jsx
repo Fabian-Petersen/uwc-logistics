@@ -43,8 +43,8 @@ const Register = () => {
 
   return (
     <Wrapper>
+      <h1 className="title section_title">Register</h1>
       <form>
-        <h1 className="title">Register</h1>
         <input
           type="text"
           placeholder="name"

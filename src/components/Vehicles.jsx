@@ -3,7 +3,7 @@ import { Table, Button } from "react-bootstrap";
 
 const Vehicles = () => {
   const { vehicles } = useGlobalContext();
-  console.log(vehicles);
+  // console.log(vehicles);
   return (
     <div>
       <Table className="table" hover>

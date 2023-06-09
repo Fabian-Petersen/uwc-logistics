@@ -39,6 +39,8 @@ const Sidebar = () => {
             Fabian
           </li>
 
+          <hr />
+
           <li>
             <NavLink to="/" className="link">
               <span className="icon">
@@ -56,16 +58,27 @@ const Sidebar = () => {
               Book Trip
             </NavLink>
           </li>
+
           <li>
-            <NavLink>
+            <NavLink to="/return">
+              <span className="icon">
+                <FontAwesomeIcon icon={faClipboard} />
+              </span>
+              Return
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/vehicles">
               <span className="icon">
                 <FontAwesomeIcon icon={faCab} />
               </span>
               Vehicles
             </NavLink>
           </li>
+
           <li>
-            <NavLink>
+            <NavLink to="/tripinfo">
               <span className="icon">
                 <FontAwesomeIcon icon={faAreaChart} />
               </span>

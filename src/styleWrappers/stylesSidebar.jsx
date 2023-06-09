@@ -19,17 +19,22 @@ const Wrapper = styled.ul`
   nav {
     list-style-type: none;
     position: absolute;
-    border-right: 2.5px solid red;
+    /* border-right: 2.5px solid red; */
     display: flex;
     top: 0;
     left: 0;
-    height: 100vh;
+    min-height: 100vh;
     width: 25rem;
     flex-direction: column;
     gap: 2.5rem;
     transition: all 0.35s ease-in;
     background-color: var(--clr-bg-sideNav);
     color: var(--clr-font-dark);
+  }
+
+  hr {
+    width: 80%;
+    margin: 0 auto;
   }
 
   .bars {

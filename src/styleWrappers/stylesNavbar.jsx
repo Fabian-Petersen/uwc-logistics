@@ -22,6 +22,11 @@ const Wrapper = styled.ul`
     margin-right: auto;
   }
 
+  h3,
+  span {
+    color: var(--clr-font-dark);
+  }
+
   img:hover {
     cursor: pointer;
   }

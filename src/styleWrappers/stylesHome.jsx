@@ -20,7 +20,7 @@ const Wrapper = styled.div`
   }
 
   .home {
-    background-image: url("/images/University_of_the_Western_Cape_-_Central_Campus_entry.jpg");
+    background-image: url("src/assets/images/University_of_the_Western_Cape_-_Central_Campus_entry.jpg");
     background-size: cover;
     background-position: center;
     position: absolute;
