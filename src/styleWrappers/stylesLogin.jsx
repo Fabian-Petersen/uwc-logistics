@@ -19,7 +19,6 @@ const Wrapper = styled.div`
     height: 12rem;
     border-radius: 50%;
     margin: 0rem auto;
-    /* margin-bottom: 1rem; */
     background-size: cover;
     border: 3px solid var(--clr-white);
   }
@@ -43,20 +42,10 @@ const Wrapper = styled.div`
     padding: 1rem;
   }
 
-  /* :is(.username, .password):focus {
-    outline: 3px solid yellow;
-    padding: 0.3rem;
-  } */
-
   .email:focus,
   .password:focus {
     outline: 2px solid yellow;
-    padding: 0.3rem;
   }
-
-  /* :is(.username, .password)::placeholder {
-    padding: 0.5rem;
-  } */
 
   .email::placeholder,
   .password::placeholder {

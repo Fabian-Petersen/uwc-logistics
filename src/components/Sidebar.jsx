@@ -6,7 +6,7 @@ import {
   faClipboard,
   faCab,
   faAreaChart,
-  faUser,
+  // faUser,
   faBars,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
@@ -33,10 +33,10 @@ const Sidebar = () => {
         )}
         <ul className="sidebarContainer">
           <li className="title">
-            <span className="title-icon">
+            {/* <span className="title-icon">
               <FontAwesomeIcon icon={faUser} />
-            </span>
-            Fabian
+            </span> */}
+            UWC Logistics
           </li>
 
           <hr />
@@ -78,11 +78,11 @@ const Sidebar = () => {
           </li>
 
           <li>
-            <NavLink to="/tripinfo">
+            <NavLink to="/bookings">
               <span className="icon">
                 <FontAwesomeIcon icon={faAreaChart} />
               </span>
-              Trips
+              All Bookings
             </NavLink>
           </li>
         </ul>

@@ -10,6 +10,7 @@ const GlobalStyles = createGlobalStyle`
   --clr-white: #fff;
   --clr-bg-login: rgb(177 58 50);
   --clr-font-dark: #2b2a4c;
+  --clr-input-focus:yellow;
 
 
 /* animation variables */
@@ -58,10 +59,10 @@ body {
 
 .btn-global {
   background-color: var(--clr-primary);
-  ${"" /* padding: 1rem; */}
+  padding:0.3rem 1.3rem;
   color: var(--clr-white);
   height:3.5rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
   outline: none;
   border: none;
   border-radius: 5px;

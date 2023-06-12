@@ -1,7 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
 import { useState, useEffect, useContext, createContext } from "react";
-import supabase from "./config/supabaseClient";
 
 //$ 1. ====== Setup the useContext Hook for global state management ====== //
 export const AppContext = createContext();
@@ -50,25 +49,6 @@ const AppProvider = ({ children }) => {
     // }
   );
 
-  useEffect(() => {
-    const fetchVehicles = async () => {
-      const { data, error } = await supabase.from("vehicles").select("*");
-
-      if (error) {
-        setFetchError("Cannot retrieve vehicles list");
-        setVehicles(null);
-        console.log(error);
-      }
-
-      if (data) {
-        setFetchError(false);
-        setVehicles(data);
-        // setVehicles(data.filter((item) => item.available === true));
-      }
-    };
-    fetchVehicles();
-  }, []);
-
   //$ 9. ====== Store the user token in the browser storage if login successful  ====== //
   if (token) {
     sessionStorage.setItem("token", JSON.stringify(token));
@@ -82,26 +62,35 @@ const AppProvider = ({ children }) => {
 
   //$ 12. ====== Booking Component - State of the initial form to book a vehicle  ====== //
   const [booking, setBooking] = useState({
-    vehicle: "",
     reason: "",
+    vehicle: "",
     start_km: "",
     end_km: "",
-    start_time: "",
-    end_time: "",
     start_date: "",
     end_date: "",
+    start_time: "",
+    end_time: "",
     driver: "",
-    available: false,
+    // available: true,
+    // vehicleId: "",
+    // userId: "",
   });
 
-  //$ 13. ====== Return Component - State of the initial form to return a vehicle  ====== //
+  //$ 13. ====== Dashboard Component - State of the booking data stored on the server  ====== //
+
+  const [bookingsData, setBookingsData] = useState([]);
+
+  //$ 14. ====== Return Component - State of the initial form to return a vehicle  ====== //
   const [returnVehicle, setReturnVehicle] = useState({
     vehicle: "",
     end_km: "",
     end_time: "",
     driver: "",
-    available: false,
+    available: true,
   });
+
+  //$ 15. ====== Vehicle Modal Component - State to open and close the modal to add a new vehicle  ====== //
+  const [openVehicleModal, setOpenVehicleModal] = useState(false);
 
   useEffect(() => {
     if (sessionStorage.getItem("token")) {
@@ -139,6 +128,10 @@ const AppProvider = ({ children }) => {
         setAvailable,
         returnVehicle,
         setReturnVehicle,
+        bookingsData,
+        setBookingsData,
+        openVehicleModal,
+        setOpenVehicleModal,
       }}
     >
       {children}
@@ -146,7 +139,7 @@ const AppProvider = ({ children }) => {
   );
 };
 
-//$ 12. ====== Custom hook for global state management  ====== //
+//$ 16. ====== Custom hook for global state management  ====== //
 export const useGlobalContext = () => {
   return useContext(AppContext);
 };

@@ -1,12 +1,11 @@
-import Wrapper from "../styleWrappers/stylesBooking";
+import Wrapper from "../styleWrappers/stylesCreateBooking";
 import { useGlobalContext } from "../contextAPI";
 import supabase from "../config/supabaseClient";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
-const Booking = () => {
-  const { vehicles, booking, setBooking, token, setAvailable } =
-    useGlobalContext();
+const CreateBooking = () => {
+  const { vehicles, booking, setBooking, token } = useGlobalContext();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -15,13 +14,15 @@ const Booking = () => {
         ...prevUserData,
         [e.target.name]: e.target.value,
         driver: token.user.user_metadata.name,
-        available: false,
+        // available: false,
       };
     });
   };
-
+  // console.log(booking);
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // console.log(booking);
+
     try {
       const { data, error } = await supabase.from("booking").insert(booking);
 
@@ -36,16 +37,17 @@ const Booking = () => {
       return;
     }
 
-    setBooking("");
-    setAvailable(false);
     toast.success("Your Booking Was Successful");
+    setBooking("");
+    // setAvailable(false);
     setTimeout(() => navigate("/dashboard"), 3000);
+    console.log(booking);
   };
 
   return (
     <Wrapper>
       <h1 className="section_title">Book Vehicle</h1>
-      <main className="booking_Container section">
+      <main className="booking_container section">
         <form onSubmit={handleSubmit}>
           <div className="row">
             <div className="vehicle flex_column">
@@ -133,4 +135,4 @@ const Booking = () => {
   );
 };
 
-export default Booking;
+export default CreateBooking;
