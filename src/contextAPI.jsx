@@ -1,10 +1,9 @@
-/* eslint-disable react-refresh/only-export-components */
-/* eslint-disable react/prop-types */
 import { useState, useEffect, useContext, createContext } from "react";
 
 //$ 1. ====== Setup the useContext Hook for global state management ====== //
 export const AppContext = createContext();
 
+// eslint-disable-next-line react/prop-types
 const AppProvider = ({ children }) => {
   const [fetchError, setFetchError] = useState(null);
   const [users, setUsers] = useState([]);
@@ -37,17 +36,17 @@ const AppProvider = ({ children }) => {
   const [userData, setUserData] = useState({ email: "", password: "" });
 
   //$ 8. ====== Fetch the vehicles data from supabase stored in the vehicles table ====== //
-  const [vehicles, setVehicles] = useState(
-    []
-    //   {
-    //   name: "",
-    //   model: "",
-    //   year: "",
-    //   registration: "",
-    //   start_km: "",
-    //   available: true,
-    // }
-  );
+  const [vehicles, setVehicles] = useState([]);
+
+  // State to Create a New Vehicle
+
+  const [createNewVehicle, setCreateNewVehicle] = useState({
+    name: "",
+    model: "",
+    year: "",
+    registration: "",
+    start_km: "",
+  });
 
   //$ 9. ====== Store the user token in the browser storage if login successful  ====== //
   if (token) {
@@ -132,6 +131,8 @@ const AppProvider = ({ children }) => {
         setBookingsData,
         openVehicleModal,
         setOpenVehicleModal,
+        createNewVehicle,
+        setCreateNewVehicle,
       }}
     >
       {children}
@@ -140,6 +141,7 @@ const AppProvider = ({ children }) => {
 };
 
 //$ 16. ====== Custom hook for global state management  ====== //
+// eslint-disable-next-line react-refresh/only-export-components
 export const useGlobalContext = () => {
   return useContext(AppContext);
 };

@@ -3,11 +3,12 @@ import { toast } from "react-hot-toast";
 import Wrapper from "../styleWrappers/stylesVehiclesTable";
 import supabase from "../config/supabaseClient";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-// import toyota from "../assets/images/toyota.jpg";
+import { Link } from "react-router-dom";
 
 const VehiclesTable = () => {
   const { vehicles } = useGlobalContext();
   const queryClient = useQueryClient();
+  // const { vehicleId } = useParams();
 
   const handleDelete = async (id) => {
     const { data, error } = await supabase
@@ -65,13 +66,9 @@ const VehiclesTable = () => {
                   <td>{registration}</td>
                   <td className="buttons">
                     <button onClick={() => mutate(id)}>delete</button>
-                    <button
-                      onClick={() => {
-                        toast.success("You Clicked Me");
-                      }}
-                    >
-                      View
-                    </button>
+                    <Link to={`/vehicles/${id}`}>
+                      <button>View</button>
+                    </Link>
                   </td>
                 </tr>
               </tbody>

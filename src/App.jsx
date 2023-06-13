@@ -6,6 +6,7 @@ import {
   Return,
   Vehicles,
   Bookings,
+  SingleVehicle,
 } from "./pages/index";
 import Home from "../src/pages/Home";
 import { Navbar, Sidebar } from "./components";
@@ -46,6 +47,7 @@ const App = () => {
           {token ? <Route path="vehicles" element={<Vehicles />} /> : ""}
           {token ? <Route path="bookings" element={<Bookings />} /> : ""}
           <Route path="register" element={<Register />} />
+          <Route path="vehicles/:vehicleId" element={<SingleVehicle />} />
         </Routes>
         <Toaster
           position="top-center"

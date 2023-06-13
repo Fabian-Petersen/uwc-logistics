@@ -18,7 +18,7 @@ const Wrapper = styled.main`
   }
 
   .openModal {
-    opacity: 0;
+    visibility: hidden;
   }
 `;
 
