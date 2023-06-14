@@ -12,10 +12,21 @@ const Wrapper = styled.main`
     gap: 2rem;
   }
 
-  h1 {
-    font-size: 5rem;
-    /* border: 2px solid red; */
-    margin: 0.5rem auto;
+  select {
+    appearance: none;
+  }
+
+  /* Custom arrow */
+  select {
+    background-image: url("src/assets/images/down-arrow-wght400.svg");
+    background-size: 24px;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 8px) center;
+    color: var(--clr-font-darkgrey);
+  }
+
+  option {
+    padding: 2rem;
   }
 
   form {
@@ -29,35 +40,12 @@ const Wrapper = styled.main`
     color: var(--clr-primary);
   }
 
-  label,
-  input,
-  select {
-    width: 100%;
-    /* padding: 1rem; */
-  }
-
   .flex_column {
     display: flex;
     flex-direction: column;
     width: 50%;
     /* gap: 1rem; */
     /* border: 1px solid green; */
-  }
-
-  label {
-    font-size: 2rem;
-    height: 3.5rem;
-    /* border: 1px solid yellow; */
-  }
-
-  input,
-  option,
-  select {
-    /* border: 1px solid red; */
-    font-size: 1.5rem;
-    height: 5rem;
-    border-radius: 5px;
-    padding: 1rem;
   }
 
   .row {

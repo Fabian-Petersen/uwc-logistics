@@ -3,18 +3,6 @@ import styled from "styled-components";
 const Wrapper = styled.main`
   width: 100%;
 
-  table {
-    width: 100%;
-    background-color: var(--clr-bg-form);
-    border-radius: 10px;
-    padding: 2rem;
-    color: var(--clr-primary);
-    /* border-top-left-radius: 10px; */
-    border-collapse: seperate;
-    border-spacing: 0;
-    overflow: hidden;
-  }
-
   thead > tr td {
     font-size: 2rem;
     font-weight: 700;
@@ -56,7 +44,7 @@ const Wrapper = styled.main`
     border-bottom: 0.5px lightgrey solid;
   }
 
-  .buttons {
+  .buttons-container {
     position: absolute;
     display: flex;
     gap: 1rem;
@@ -65,21 +53,22 @@ const Wrapper = styled.main`
     /* border: 1px solid red; */
   }
 
-  button {
+  .btn-vehicle-fns {
     outline: none;
     border: none;
     flex: 1;
     font-size: 1.5rem;
     border-radius: 3px;
-    background-color: var(--clr-primary);
-    color: var(--clr-white);
+    background-color: transparent;
+    color: var(--clr-primary);
     padding: 0.3rem 1.3rem;
-    /* border: 1px solid red; */
     text-transform: capitalize;
   }
 
-  button:hover {
+  .btn-vehicle-fns:hover {
     cursor: pointer;
+    background-color: transparent;
+    color: var(--clr-btn-hover);
   }
 `;
 

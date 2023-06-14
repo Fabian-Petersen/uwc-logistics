@@ -39,14 +39,10 @@ const Vehicles = () => {
       <h1 className={openVehicleModal ? "openModal" : "section_title"}>
         Vehicles
       </h1>
-      <main
-        className={
-          openVehicleModal ? "openModal" : "vehicles_container section"
-        }
-      >
+      <main className={openVehicleModal ? "openModal" : "section-global"}>
         <VehiclesTable />
         <button
-          className="btn-global"
+          className="btn-global btn-vehicle-submit"
           onClick={() => setOpenVehicleModal(true)}
         >
           Add Vehicle

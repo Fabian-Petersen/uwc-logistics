@@ -1,20 +1,14 @@
 import styled from "styled-components";
 
 const Wrapper = styled.main`
-  .vehicles_container {
-    /* border: 2px solid blue; */
-    width: 60vw;
-    height: 75vh;
-    margin-top: 5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
+  table {
+    margin-bottom: 3rem;
   }
 
-  button {
+  .btn-vehicle-submit {
     align-self: center;
     width: 100%;
+    height: 4rem;
   }
 
   .openModal {

@@ -5,18 +5,19 @@ const Wrapper = styled.ul`
     transform: translateX(0);
   }
 
-  .navClosed {
+  .navClosed:not(.bars) {
     transform: translateX(-75%);
     border: none;
-    background-color: var(--clr-white);
+    background-color: transparent;
+    visibility: hidden;
   }
 
   nav.navClosed > ul.sidebarContainer > li:hover {
     cursor: default;
-    /* background-color: darkgray; */
   }
 
   nav {
+    /* color: black; */
     list-style-type: none;
     position: absolute;
     /* border-right: 2.5px solid red; */
@@ -28,8 +29,8 @@ const Wrapper = styled.ul`
     flex-direction: column;
     gap: 2.5rem;
     transition: all 0.35s ease-in;
-    background-color: var(--clr-bg-sideNav);
-    color: var(--clr-font-dark);
+    background-color: var(--clr-bg);
+    /* color: var(--clr-black); */
   }
 
   hr {
@@ -43,7 +44,7 @@ const Wrapper = styled.ul`
     font-size: 3rem;
     right: 2rem;
     top: 1rem;
-    color: var(--clr-bg-login);
+    color: var(--clr-font-lightgrey);
   }
 
   .bars:hover {
@@ -55,7 +56,7 @@ const Wrapper = styled.ul`
     display: flex;
     flex-direction: column;
     list-style-type: none;
-    gap: 2rem;
+    gap: 2.5rem;
     justify-content: flex-start;
     margin-top: 5rem;
     align-content: center;
@@ -65,6 +66,7 @@ const Wrapper = styled.ul`
   }
 
   .title {
+    color: var(--clr-primary);
     font-size: 2rem;
     padding: 0 1rem;
   }
@@ -72,23 +74,30 @@ const Wrapper = styled.ul`
   .title-icon {
     font-size: 2rem;
     margin-right: 1rem;
+    color: var(--clr-font-lightgrey);
   }
 
   .sidebarContainer > li:not(.title) {
     transition: transform 0.5s ease;
     padding: 1.3rem;
-    font-size: 2rem;
+    /* font-size: 2rem; */
+    color: var(--clr-font-darkgrey);
     text-transform: uppercase;
   }
 
   .sidebarContainer > li:hover:not(.title) {
-    cursor: pointer;
     transform: translateX(1rem);
+    cursor: pointer;
+  }
+
+  .link {
+    color: var(--clr-font-lightgrey);
+    font-size: 2.2rem;
   }
 
   .icon {
     margin-right: 1.2rem;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
   }
 `;
 export default Wrapper;

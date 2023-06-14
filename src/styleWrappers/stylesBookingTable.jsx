@@ -2,19 +2,6 @@ import styled from "styled-components";
 
 const Wrapper = styled.main`
   width: 100%;
-  /* border: 1px solid blue; */
-
-  table {
-    width: 100%;
-    background-color: var(--clr-bg-form);
-    border-radius: 10px;
-    padding: 2rem;
-    color: var(--clr-primary);
-    /* border-top-left-radius: 10px; */
-    border-collapse: seperate;
-    border-spacing: 0;
-    overflow: hidden;
-  }
 
   thead > tr td {
     font-size: 2rem;
@@ -31,7 +18,6 @@ const Wrapper = styled.main`
     font-size: 2.5rem;
     background-color: lightgray;
     height: 5rem;
-    /* border: 1px solid red; */
   }
 
   .tableRows {

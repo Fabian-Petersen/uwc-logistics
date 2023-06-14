@@ -1,19 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useGlobalContext } from "../contextAPI";
 import { NavLink } from "react-router-dom";
-import {
-  faHome,
-  faClipboard,
-  faCab,
-  faAreaChart,
-  // faUser,
-  faBars,
-  faXmark,
-} from "@fortawesome/free-solid-svg-icons";
+import { navLinks } from "../assets/data/navLinks";
+import icons from "../assets/data/icons";
 import Wrapper from "../styleWrappers/stylesSidebar";
 
 const Sidebar = () => {
   const { openNav, setOpenNav } = useGlobalContext();
+  const { faBars, faXmark } = icons;
 
   const handleClick = () => {
     setOpenNav(!openNav);
@@ -38,20 +32,32 @@ const Sidebar = () => {
             </span> */}
             UWC Logistics
           </li>
-
           <hr />
+          {navLinks.map((link, index) => {
+            const { name, path, icon } = link;
+            return (
+              <li key={index}>
+                <NavLink to={path} className="link">
+                  <span className="icon">
+                    <FontAwesomeIcon icon={icon} />
+                  </span>
+                  {name}
+                </NavLink>
+              </li>
+            );
+          })}
 
-          <li>
-            <NavLink to="/" className="link">
+          {/* <li>
+            <NavLink to="/dashboard" className="link">
               <span className="icon">
                 <FontAwesomeIcon icon={faHome} />
               </span>
-              Home
+              Dashboard
             </NavLink>
           </li>
 
           <li>
-            <NavLink to="/booking">
+            <NavLink to="/booking" className="link">
               <span className="icon">
                 <FontAwesomeIcon icon={faClipboard} />
               </span>
@@ -60,7 +66,7 @@ const Sidebar = () => {
           </li>
 
           <li>
-            <NavLink to="/return">
+            <NavLink to="/return" className="link">
               <span className="icon">
                 <FontAwesomeIcon icon={faClipboard} />
               </span>
@@ -69,7 +75,7 @@ const Sidebar = () => {
           </li>
 
           <li>
-            <NavLink to="/vehicles">
+            <NavLink to="/vehicles" className="link">
               <span className="icon">
                 <FontAwesomeIcon icon={faCab} />
               </span>
@@ -78,13 +84,13 @@ const Sidebar = () => {
           </li>
 
           <li>
-            <NavLink to="/bookings">
+            <NavLink to="/bookings" className="link">
               <span className="icon">
                 <FontAwesomeIcon icon={faAreaChart} />
               </span>
               All Bookings
             </NavLink>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </Wrapper>

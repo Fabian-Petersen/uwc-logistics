@@ -43,47 +43,49 @@ const Register = () => {
 
   return (
     <Wrapper>
-      <h1 className="title section_title">Register</h1>
-      <form>
-        <input
-          type="text"
-          placeholder="name"
-          name="name"
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Surname"
-          name="surname"
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="email"
-          placeholder="email"
-          name="email"
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
-          placeholder="password"
-          name="password"
-          required
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          placeholder="confirm password"
-          name="confirmPassword"
-          required
-          onChange={handleChange}
-        />
-        <Button type="submit" onClick={handleSubmit}>
-          Submit
-        </Button>
-      </form>
+      <h1 className="section_title">Register</h1>
+      <main className="section-global">
+        <form>
+          <input
+            type="text"
+            placeholder="name"
+            name="name"
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="text"
+            placeholder="Surname"
+            name="surname"
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="email"
+            placeholder="email"
+            name="email"
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="password"
+            placeholder="password"
+            name="password"
+            required
+            onChange={handleChange}
+          />
+          <input
+            type="password"
+            placeholder="confirm password"
+            name="confirmPassword"
+            required
+            onChange={handleChange}
+          />
+          <Button type="submit" onClick={handleSubmit}>
+            Submit
+          </Button>
+        </form>
+      </main>
     </Wrapper>
   );
 };

@@ -29,7 +29,7 @@ const BookingTable = () => {
   return (
     <Wrapper>
       <main className="bookingTableContainer">
-        <table>
+        <table className="table-global">
           <thead className="tableHeadings">
             <tr>
               <td>Created</td>

@@ -43,7 +43,7 @@ const VehiclesTable = () => {
   return (
     <Wrapper>
       <main>
-        <table>
+        <table className="table-global">
           <thead className="tableHeadings">
             <tr>
               <td scope="col">Name</td>
@@ -64,10 +64,17 @@ const VehiclesTable = () => {
                   <td>{year}</td>
                   <td>{start_km} km</td>
                   <td>{registration}</td>
-                  <td className="buttons">
-                    <button onClick={() => mutate(id)}>delete</button>
+                  <td className="buttons-container">
+                    <button
+                      className="btn-global btn-vehicle-fns"
+                      onClick={() => mutate(id)}
+                    >
+                      delete
+                    </button>
                     <Link to={`/vehicles/${id}`}>
-                      <button>View</button>
+                      <button className="btn-global btn-vehicle-fns">
+                        View
+                      </button>
                     </Link>
                   </td>
                 </tr>

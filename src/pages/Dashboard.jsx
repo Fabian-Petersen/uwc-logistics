@@ -24,7 +24,7 @@ const Dashboard = () => {
   return (
     <Wrapper>
       <h1 className="section_title">Dashboard</h1>
-      <main className="dashboard_container section">
+      <main className="section-global">
         <div className="bookingTable">
           {bookingsData.map((booking) => {
             const { id, created_at, reason, vehicle } = booking;

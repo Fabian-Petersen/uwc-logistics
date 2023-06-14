@@ -80,6 +80,7 @@ const Wrapper = styled.ul`
 
   Navlink {
     text-decoration: none;
+    color: var(--clr-font-lightgrey);
   }
 `;
 
