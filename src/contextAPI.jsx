@@ -60,17 +60,14 @@ const AppProvider = ({ children }) => {
   const [available, setAvailable] = useState(true);
 
   //$ 12. ====== Booking Component - State of the initial form to book a vehicle  ====== //
-  const [booking, setBooking] = useState({
+  const [createNewBooking, setCreateNewBooking] = useState({
     reason: "",
     vehicle: "",
-    start_km: "",
-    end_km: "",
     start_date: "",
-    end_date: "",
+    return_date: "",
     start_time: "",
-    end_time: "",
+    return_time: "",
     driver: "",
-    // available: true,
     // vehicleId: "",
     // userId: "",
   });
@@ -83,7 +80,7 @@ const AppProvider = ({ children }) => {
   const [returnVehicle, setReturnVehicle] = useState({
     vehicle: "",
     end_km: "",
-    end_time: "",
+    return_time: "",
     driver: "",
     available: true,
   });
@@ -121,8 +118,8 @@ const AppProvider = ({ children }) => {
         setToken,
         openNav,
         setOpenNav,
-        booking,
-        setBooking,
+        createNewBooking,
+        setCreateNewBooking,
         available,
         setAvailable,
         returnVehicle,

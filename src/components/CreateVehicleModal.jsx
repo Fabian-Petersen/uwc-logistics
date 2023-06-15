@@ -23,9 +23,11 @@ const CreateVehicleModal = () => {
   const { mutate } = useMutation(
     async (newData) => {
       const { data, error } = await supabase.from("vehicles").insert(newData);
+
       if (error) {
         throw new Error(error.message);
       }
+
       return data;
     },
     {

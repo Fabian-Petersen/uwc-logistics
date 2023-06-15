@@ -10,7 +10,7 @@ export const navLinks = [
   },
   {
     name: "Book Trip",
-    path: "/booking",
+    path: "/createbooking",
     icon: faPen,
   },
   {

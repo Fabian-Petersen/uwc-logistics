@@ -15,6 +15,7 @@ const GlobalStyles = createGlobalStyle`
   --clr-font-lightgrey:#babcbc;
   --clr-font-darkgrey:#6d6d6d;
   --clr-btn-hover:#2f58cd;
+  --radius:5px;
 
 
 /* animation variables */
@@ -80,10 +81,10 @@ body {
 
 .section-global {
   position: absolute;
-  top: 20%;
+  top: 18%;
   left: 25%;
   width: 70vw;
-  height: 100vh;
+  height: 80vh;
 }
 
 .section_title {

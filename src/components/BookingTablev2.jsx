@@ -63,15 +63,15 @@ const BookingTablev2 = () => {
     },
     {
       name: "End Date",
-      selector: (row) => row.end_date,
+      selector: (row) => row.return_date,
     },
     {
       name: "Start Time",
       selector: (row) => row.start_time,
     },
     {
-      name: "End Time",
-      selector: (row) => row.end_time,
+      name: "Return Time",
+      selector: (row) => row.return_time,
     },
   ];
 

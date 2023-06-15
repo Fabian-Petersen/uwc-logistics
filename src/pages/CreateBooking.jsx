@@ -2,47 +2,100 @@ import Wrapper from "../styleWrappers/stylesCreateBooking";
 import { useGlobalContext } from "../contextAPI";
 import supabase from "../config/supabaseClient";
 import { useNavigate } from "react-router-dom";
+import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 
 const CreateBooking = () => {
-  const { vehicles, booking, setBooking, token } = useGlobalContext();
+  const {
+    createNewBooking,
+    setCreateNewBooking,
+    token,
+    setVehicles,
+    vehicles,
+  } = useGlobalContext();
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
 
+  const fetchVehicles = async () => {
+    const { data, error } = await supabase.from("vehicles").select("*");
+
+    if (data) {
+      setVehicles(data);
+      // setVehicles(data.filter((item) => item.available === true));
+    }
+
+    if (error) {
+      console.log(error);
+    }
+    return data;
+  };
+
+  useQuery({
+    queryKey: ["vehicles"],
+    queryFn: fetchVehicles,
+  });
+
   const handleChange = (e) => {
-    setBooking((prevUserData) => {
+    setCreateNewBooking((prevUserData) => {
       return {
         ...prevUserData,
         [e.target.name]: e.target.value,
         driver: token.user.user_metadata.name,
-        // available: false,
       };
     });
+    console.log(createNewBooking);
   };
-  // console.log(booking);
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // console.log(booking);
 
-    try {
-      const { data, error } = await supabase.from("booking").insert(booking);
+  const { mutate } = useMutation(
+    async (newData) => {
+      const { data, error } = await supabase.from("booking").insert(newData);
 
-      if (data) {
-        console.log(data);
+      if (error) {
+        throw new Error();
       }
 
-      if (error) throw Error;
-    } catch (error) {
-      toast.error("Your Booking Was Unsuccessful");
-      console.log(error);
-      return;
+      return data;
+    },
+    {
+      onSuccess: () => {
+        toast.success("Your Booking Was Successful");
+        setTimeout(() => navigate("/dashboard"), 3000);
+        setCreateNewBooking("");
+        queryClient.invalidateQueries({
+          queryKey: ["bookings"],
+        });
+      },
     }
+  );
 
-    toast.success("Your Booking Was Successful");
-    setBooking("");
-    // setAvailable(false);
-    setTimeout(() => navigate("/dashboard"), 3000);
-    console.log(booking);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newData = createNewBooking;
+    mutate(newData);
   };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const { data, error } = await supabase
+  //       .from("booking")
+  //       .insert(createNewBooking);
+
+  //     if (data) {
+  //       console.log(data);
+  //       toast.success("Success");
+  //     }
+
+  //     if (error) {
+  //       console.log(error);
+  //     }
+
+  //     return data;
+  //    setTimeout(() => navigate("/dashboard"), 3000);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <Wrapper>
@@ -96,34 +149,26 @@ const CreateBooking = () => {
                 onChange={handleChange}
               />
             </div>
-            <div className="flex_column">
-              <label htmlFor="endDate">End Date</label>
+            <div className="returnDate flex_column">
+              <label>Return Date</label>
               <input
+                placeholder="Enter Return Date"
                 required
                 type="date"
-                name="end_date"
+                name="return_date"
                 onChange={handleChange}
               />
             </div>
           </div>
+
           <div className="row">
             <div className="time flex_column">
-              <label htmlFor="startTime">Start Time</label>
+              <label>Start Time</label>
               <input type="time" name="start_time" onChange={handleChange} />
             </div>
             <div className="flex_column">
-              <label htmlFor="endTime">End Time</label>
-              <input type="time" name="end_time" onChange={handleChange} />
-            </div>
-          </div>
-          <div className="row">
-            <div className="flex_column">
-              <label htmlFor="start_km">Start Kilometers</label>
-              <input name="start_km" onChange={handleChange} />
-            </div>
-            <div className="flex_column">
-              <label htmlFor="end_km">End Kilometers</label>
-              <input required name="end_km" onChange={handleChange} />
+              <label>Return Time</label>
+              <input type="time" name="return_time" onChange={handleChange} />
             </div>
           </div>
           <button type="submit" className="btn-global">
