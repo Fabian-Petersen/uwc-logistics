@@ -1,14 +1,13 @@
 import Wrapper from "../styleWrappers/stylesVehicles";
-import VehiclesTable from "../components/VehiclesTable";
+import VehiclesTable from "../components/vehicles/VehiclesTable";
 import supabase from "../config/supabaseClient";
 import { useQuery } from "@tanstack/react-query";
 import { useGlobalContext } from "../contextAPI";
 import { toast } from "react-hot-toast";
-import CreateVehicleModal from "../components/CreateVehicleModal";
+import CreateVehicleModal from "../components/vehicles/CreateVehicleModal";
 
 const Vehicles = () => {
-  const { setFetchError, setVehicles, openVehicleModal, setOpenVehicleModal } =
-    useGlobalContext();
+  const { setFetchError, setVehicles, openVehicleModal } = useGlobalContext();
   // const queryClient = useQueryClient();
 
   const fetchVehicles = async () => {
@@ -41,12 +40,6 @@ const Vehicles = () => {
       </h1>
       <main className={openVehicleModal ? "openModal" : "section-global"}>
         <VehiclesTable />
-        <button
-          className="btn-global btn-vehicle-submit"
-          onClick={() => setOpenVehicleModal(true)}
-        >
-          Add Vehicle
-        </button>
       </main>
     </Wrapper>
   );

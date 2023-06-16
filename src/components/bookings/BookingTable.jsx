@@ -1,7 +1,7 @@
-import { useGlobalContext } from "../contextAPI";
-import supabase from "../config/supabaseClient";
+import { useGlobalContext } from "../../contextAPI";
+import supabase from "../../config/supabaseClient";
 import { useQuery } from "@tanstack/react-query";
-import Wrapper from "../styleWrappers/stylesBookingTable";
+import Wrapper from "../../styleWrappers/stylesBookingTable";
 import { format } from "date-fns";
 
 const BookingTable = () => {
@@ -51,21 +51,6 @@ const BookingTable = () => {
               end_time,
             } = booking;
             const formattedDate = format(new Date(created_at), "dd/MM/yyyy");
-            {
-              /* const formattedTimeStart = format(
-              new Date(`1970-01-01T${start_time}.000Z`),
-              "hh:mm"
-            );
-              const formattedTimeEnd = format(
-                new Date(`2018-09-01T${end_time}.386Z`),
-                "hh:mm"
-              );
-              {/* console.log(formattedTimeEnd); */
-            }
-
-            {
-              /* } */
-            }
             return (
               <tbody key={id}>
                 <tr className="tableRows">

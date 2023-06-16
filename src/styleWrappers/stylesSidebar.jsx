@@ -20,26 +20,46 @@ const Wrapper = styled.ul`
     /* color: black; */
     list-style-type: none;
     position: absolute;
-    /* border-right: 2.5px solid red; */
+    flex-direction: column;
     display: flex;
     top: 0;
     left: 0;
     min-height: 100vh;
-    width: 25rem;
-    flex-direction: column;
-    gap: 2.5rem;
+    width: 28rem;
+    gap: 2rem;
     transition: all 0.35s ease-in;
-    background-color: var(--clr-bg);
-    /* color: var(--clr-black); */
+    background-color: var(--clr-bg-sideNav);
+  }
+
+  .title {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    color: var(--clr-white);
+    font-size: 1.3rem;
+    gap: 1rem;
+    padding: 0 1.5rem;
+    align-items: center;
+    padding-bottom: 2rem;
+    border-bottom: 0.5px solid white;
+  }
+
+  .title:first-child {
+    padding-top: 2rem;
+    font-size: 1.5rem;
   }
 
   hr {
-    width: 80%;
-    margin: 0 auto;
+    position: aboslute;
+    top: 10%;
   }
 
-  .bars {
-    /* border: 1px solid teal */
+  .title hr {
+    background-color: var(--clr-white);
+  }
+
+  /* .bars {
+  border: 1px solid teal
     position: absolute;
     font-size: 3rem;
     right: 2rem;
@@ -50,9 +70,9 @@ const Wrapper = styled.ul`
   .bars:hover {
     scale: 1.1;
     cursor: pointer;
-  }
+  } */
 
-  .sidebarContainer {
+  ul {
     display: flex;
     flex-direction: column;
     list-style-type: none;
@@ -62,36 +82,26 @@ const Wrapper = styled.ul`
     align-content: center;
     width: 100%;
     padding: 0;
+    transition: all 0.35s ease-in;
     /* border: 2px solid blue; */
   }
 
-  .title {
-    color: var(--clr-primary);
-    font-size: 2rem;
-    padding: 0 1rem;
-  }
-
-  .title-icon {
-    font-size: 2rem;
-    margin-right: 1rem;
-    color: var(--clr-font-lightgrey);
-  }
-
-  .sidebarContainer > li:not(.title) {
+  ul > li {
     transition: transform 0.5s ease;
     padding: 1.3rem;
-    /* font-size: 2rem; */
-    color: var(--clr-font-darkgrey);
+    color: var(--clr-white);
     text-transform: uppercase;
+    border-left: 5px solid transparent;
   }
 
-  .sidebarContainer > li:hover:not(.title) {
-    transform: translateX(1rem);
+  ul > li:hover {
+    background-color: var(--clr-primary);
     cursor: pointer;
+    border-left: 5px solid var(--clr-bg-login);
   }
 
   .link {
-    color: var(--clr-font-lightgrey);
+    color: var(--clr-white);
     font-size: 2.2rem;
   }
 

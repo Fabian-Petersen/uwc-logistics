@@ -1,7 +1,7 @@
-import { useGlobalContext } from "../contextAPI";
-import supabase from "../config/supabaseClient";
+import { useGlobalContext } from "../../contextAPI";
+import supabase from "../../config/supabaseClient";
 import { useQuery } from "@tanstack/react-query";
-import Wrapper from "../styleWrappers/stylesBookingTable";
+import Wrapper from "../../styleWrappers/stylesBookingTable";
 import { format } from "date-fns";
 import DataTable from "react-data-table-component";
 
@@ -10,11 +10,15 @@ const BookingTablev2 = () => {
 
   const bookingData = async () => {
     try {
-      const { data, error } = await supabase.from("booking").select("*");
-
+      const { data, error } = await supabase
+        .from("booking")
+        .select(
+          "created_at,reason, start_date, return_date, vehicles(name, model,registration)"
+        );
       if (data) {
         setBookingsData(data);
       }
+
       if (error) throw Error;
       return data;
     } catch (error) {
@@ -34,8 +38,6 @@ const BookingTablev2 = () => {
     obj.created_at = format(new Date(obj.created_at), "yyyy/MM/dd");
   });
 
-  // console.log(updatedBookingsData);
-
   const columns = [
     {
       name: "Created",
@@ -47,31 +49,30 @@ const BookingTablev2 = () => {
       selector: (row) => row.reason,
     },
     {
-      name: "Vehicle",
-      selector: (row) => row.vehicle,
-      sortable: true,
-    },
-    {
-      name: "driver",
-      selector: (row) => row.driver,
-      sortable: true,
-    },
-    {
       name: "Start Date",
       selector: (row) => row.start_date,
       sortable: true,
     },
     {
-      name: "End Date",
+      name: "Return Date",
       selector: (row) => row.return_date,
+      sortable: true,
     },
     {
-      name: "Start Time",
-      selector: (row) => row.start_time,
+      name: "Name",
+      selector: (row) => row.name,
     },
     {
-      name: "Return Time",
-      selector: (row) => row.return_time,
+      name: "Model",
+      selector: (row) => row.model,
+    },
+    {
+      name: "Registration",
+      selector: (row) => row.registration,
+    },
+    {
+      name: "Driver",
+      selector: (row) => row.driver,
     },
   ];
 

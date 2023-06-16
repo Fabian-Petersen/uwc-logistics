@@ -1,7 +1,7 @@
-import { useGlobalContext } from "../contextAPI";
-import Wrapper from "../styleWrappers/stylesAddVehicleModal";
+import { useGlobalContext } from "../../contextAPI";
+import Wrapper from "../../styleWrappers/stylesAddVehicleModal";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import supabase from "../config/supabaseClient";
+import supabase from "../../config/supabaseClient";
 import { toast } from "react-hot-toast";
 
 // ================================================== Add A New Vehicle ================================================ //

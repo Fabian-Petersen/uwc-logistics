@@ -1,12 +1,12 @@
-import { useGlobalContext } from "../contextAPI";
+import { useGlobalContext } from "../../contextAPI";
 import { toast } from "react-hot-toast";
-import Wrapper from "../styleWrappers/stylesVehiclesTable";
-import supabase from "../config/supabaseClient";
+import Wrapper from "../../styleWrappers/stylesVehiclesTable";
+import supabase from "../../config/supabaseClient";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 
 const VehiclesTable = () => {
-  const { vehicles } = useGlobalContext();
+  const { vehicles, setOpenVehicleModal } = useGlobalContext();
   const queryClient = useQueryClient();
   // const { vehicleId } = useParams();
 
@@ -81,6 +81,12 @@ const VehiclesTable = () => {
               </tbody>
             );
           })}
+          <button
+            className="btn-global btn-vehicleTable"
+            onClick={() => setOpenVehicleModal(true)}
+          >
+            Add Vehicle
+          </button>
         </table>
       </main>
     </Wrapper>

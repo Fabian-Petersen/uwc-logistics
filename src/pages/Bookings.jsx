@@ -1,6 +1,6 @@
 import Wrapper from "../styleWrappers/stylesBookings";
 // import BookingTable from "../components/BookingTable";
-import BookingTablev2 from "../components/BookingTablev2";
+import BookingTablev2 from "../components/bookings/BookingTablev2";
 
 const Bookings = () => {
   return (

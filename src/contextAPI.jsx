@@ -62,14 +62,12 @@ const AppProvider = ({ children }) => {
   //$ 12. ====== Booking Component - State of the initial form to book a vehicle  ====== //
   const [createNewBooking, setCreateNewBooking] = useState({
     reason: "",
-    vehicle: "",
     start_date: "",
     return_date: "",
     start_time: "",
     return_time: "",
-    driver: "",
-    // vehicleId: "",
-    // userId: "",
+    vehicleId: "",
+    userId: "",
   });
 
   //$ 13. ====== Dashboard Component - State of the booking data stored on the server  ====== //

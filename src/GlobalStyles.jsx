@@ -5,7 +5,7 @@ const GlobalStyles = createGlobalStyle`
   /* variables */
   --clr-primary: #0079ff;
   --clr-bg-form: #f8f6f4;
-  --clr-bg-sideNav: #d8c4b6;
+  --clr-bg-sideNav:#1c2534;
   --clr-bg-signup: rgb(177 58 58);
   --clr-white: #fff;
   --clr-bg-login: rgb(177 58 50);
@@ -15,6 +15,8 @@ const GlobalStyles = createGlobalStyle`
   --clr-font-lightgrey:#babcbc;
   --clr-font-darkgrey:#6d6d6d;
   --clr-btn-hover:#2f58cd;
+  --clr-bg-main:#d8E1E6;
+  --clr-bg-dashcard:#2d363b;
   --radius:5px;
 
 
@@ -52,6 +54,7 @@ body {
   place-items: center;
   position: relative;
   font-family: "Poppins", sans-serif;
+  background-color: var(--clr-bg-main);
   /* border: solid 2px yellow; */
 }
 
@@ -81,7 +84,7 @@ body {
 
 .section-global {
   position: absolute;
-  top: 18%;
+  top: 20%;
   left: 25%;
   width: 70vw;
   height: 80vh;
@@ -89,7 +92,7 @@ body {
 
 .section_title {
   position: absolute;
-  top: 10%;
+  top: 12%;
   left: 25%;
   color: var(--clr-primary);
   font-size: 3.5rem;
@@ -106,6 +109,7 @@ body {
   border-spacing: 0;
   overflow: hidden;
   text-transform:uppercase;
+  display:table;
 }
 
 

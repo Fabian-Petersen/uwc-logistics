@@ -1,8 +1,8 @@
 // import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Wrapper from "../styleWrappers/stylesLogin";
-import { useGlobalContext } from "../contextAPI";
-import supabase from "../config/supabaseClient";
+import Wrapper from "../../styleWrappers/stylesLogin";
+import { useGlobalContext } from "../../contextAPI";
+import supabase from "../../config/supabaseClient";
 
 const Login = () => {
   //$ 1. ====== use navigate hook to redirect the page to the dashboard once logged in. ====== //

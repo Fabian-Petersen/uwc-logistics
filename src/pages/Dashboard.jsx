@@ -1,16 +1,13 @@
 import Wrapper from "../styleWrappers/stylesDashboard";
 import supabase from "../config/supabaseClient";
-// import { useVehicles } from "../services/useVehicles";
 import { useGlobalContext } from "../contextAPI";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import icons from "../assets/data/icons";
+import BarChartDash from "../components/dashboard/BarChart";
+import PieChartDash from "../components/dashboard/PieChartDash";
 
 const Dashboard = () => {
   const { faClipboard } = icons;
-  // const { bookingsData } = useGlobalContext();
-
-  // const bookingInfo = bookingsData.length;
-  // console.log(bookingInfo);
   const { setBookingsData } = useGlobalContext();
 
   const bookingData = async () => {
@@ -27,13 +24,11 @@ const Dashboard = () => {
   };
 
   bookingData();
-  // console.log(bookingsData);
   return (
     <Wrapper>
       <h1 className="section_title">Dashboard</h1>
       <main className="section-global">
         <div className="dashboard">
-          {/* <h2>Welcome {token.user.user_metadata.name}</h2> */}
           <div className="card-container">
             <div className="card">
               <h3>Bookings</h3>
@@ -55,10 +50,18 @@ const Dashboard = () => {
               <FontAwesomeIcon className="icon" icon={faClipboard} />
               <p>20</p>
             </div>
+            <div className="card">
+              <h3>Vehicles</h3>
+              <FontAwesomeIcon className="icon" icon={faClipboard} />
+              <p>7</p>
+            </div>
           </div>
           <div className="graph-container">
-            <div className="lineGraph"></div>
-            <div className="pieChart"></div>
+            <BarChartDash className="barChart" />
+            <div className="small-charts">
+              <PieChartDash className="pieChart" />
+              <PieChartDash className="pieChart" />
+            </div>
           </div>
         </div>
       </main>

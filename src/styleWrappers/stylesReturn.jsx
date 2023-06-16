@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 const Wrapper = styled.main`
   .return_Container {
-    /* border: 2px solid blue; */
     width: 60vw;
     height: 80vh;
     margin-top: 5rem;
@@ -44,8 +43,6 @@ const Wrapper = styled.main`
     display: flex;
     flex-direction: column;
     width: 50%;
-    /* gap: 1rem; */
-    /* border: 1px solid green; */
   }
 
   .row {

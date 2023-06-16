@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 const Wrapper = styled.main`
-  width: 100%;
-
   thead > tr td {
     font-size: 2rem;
     font-weight: 700;
@@ -37,7 +35,6 @@ const Wrapper = styled.main`
   td {
     font-size: 1.5rem;
     padding: 1.5rem;
-    /* border: 1px solid green; */
   }
 
   tbody:not(:last-child) {
@@ -69,6 +66,12 @@ const Wrapper = styled.main`
     cursor: pointer;
     background-color: transparent;
     color: var(--clr-btn-hover);
+  }
+
+  .btn-vehicleTable {
+    border: 1px solid blue;
+    margin: 1.5rem 0;
+    width: 100%;
   }
 `;
 

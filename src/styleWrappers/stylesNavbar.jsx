@@ -10,7 +10,7 @@ const Wrapper = styled.ul`
     left: 0;
     height: 7rem;
     width: 100%;
-    /* background-color: var(--clr-bg-nav); */
+    background-color: var(--clr-bg-form);
     padding: 0.5rem 2rem;
     gap: 2rem;
     /* border: 1px solid yellow; */

@@ -1,7 +1,7 @@
-import Wrapper from "../styleWrappers/stylesNavbar";
-import { useGlobalContext } from "../contextAPI";
+import Wrapper from "../../styleWrappers/stylesNavbar";
+import { useGlobalContext } from "../../contextAPI";
 import { useNavigate } from "react-router-dom";
-import supabase from "../config/supabaseClient";
+import supabase from "../../config/supabaseClient";
 
 const Navbar = () => {
   const { setToken, login, setLogin, userData, token } = useGlobalContext();
