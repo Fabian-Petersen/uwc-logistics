@@ -39,8 +39,8 @@ const Return = () => {
   };
   return (
     <Wrapper>
-      <h1 className="section_title">Return Vehicle</h1>
-      <main className="section-global">
+      <h1 className="section_title_global">Return Vehicle</h1>
+      <main className="section_global">
         <form onSubmit={handleSubmit}>
           <div className="row">
             <div className="vehicle flex_column">

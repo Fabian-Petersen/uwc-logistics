@@ -36,6 +36,13 @@ const Wrapper = styled.main`
   tbody:not(:last-child) {
     border-bottom: 0.5px lightgrey solid;
   }
+
+  .kreUpT,
+  .kDMEDp > * {
+    background-color: transparent;
+    color: var(--clr-font-dark);
+    fill: var(--clr-font-dark);
+  }
 `;
 
 export default Wrapper;

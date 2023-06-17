@@ -43,7 +43,7 @@ const VehiclesTable = () => {
   return (
     <Wrapper>
       <main>
-        <table className="table-global">
+        <table className="table_global">
           <thead className="tableHeadings">
             <tr>
               <td scope="col">Name</td>
@@ -81,12 +81,16 @@ const VehiclesTable = () => {
               </tbody>
             );
           })}
-          <button
-            className="btn-global btn-vehicleTable"
-            onClick={() => setOpenVehicleModal(true)}
-          >
-            Add Vehicle
-          </button>
+          <tfoot className="btn-container">
+            <td colSpan="8">
+              <button
+                className="btn-global btn-vehicleTable"
+                onClick={() => setOpenVehicleModal(true)}
+              >
+                Add Vehicle
+              </button>
+            </td>
+          </tfoot>
         </table>
       </main>
     </Wrapper>

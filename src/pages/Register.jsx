@@ -43,8 +43,8 @@ const Register = () => {
 
   return (
     <Wrapper>
-      <h1 className="section_title">Register</h1>
-      <main className="section-global">
+      <h1 className="section_title_global">Register</h1>
+      <main className="section_global">
         <form>
           <input
             type="text"

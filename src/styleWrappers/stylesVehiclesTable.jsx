@@ -32,6 +32,11 @@ const Wrapper = styled.main`
     width: 100%;
   }
 
+  tbody:last-child {
+    margin-bottom: 2rem;
+    border: var(--border-g);
+  }
+
   td {
     font-size: 1.5rem;
     padding: 1.5rem;
@@ -68,9 +73,19 @@ const Wrapper = styled.main`
     color: var(--clr-btn-hover);
   }
 
-  .btn-vehicleTable {
-    border: 1px solid blue;
-    margin: 1.5rem 0;
+  .btn-container {
+    padding-top: 2rem;
+    /* border: 1px solid blue; */
+    margin: 1rem;
+  }
+
+  .btn-container td {
+    height: 2rem;
+    margin: 0;
+    padding: 2rem 1rem;
+  }
+
+  .btn-container td button {
     width: 100%;
   }
 `;

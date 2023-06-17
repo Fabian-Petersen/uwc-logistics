@@ -26,8 +26,8 @@ const Dashboard = () => {
   bookingData();
   return (
     <Wrapper>
-      <h1 className="section_title">Dashboard</h1>
-      <main className="section-global">
+      <h1 className="section_title_global">Dashboard</h1>
+      <main className="section_global">
         <div className="dashboard">
           <div className="card-container">
             <div className="card">

@@ -7,7 +7,7 @@ const Wrapper = styled.main`
     flex-direction: column;
     width: 35%;
     /* border: 1px solid blue; */
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: var(--clr-bg-form);

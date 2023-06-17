@@ -35,10 +35,10 @@ const Vehicles = () => {
   return (
     <Wrapper>
       {openVehicleModal ? <CreateVehicleModal /> : ""}
-      <h1 className={openVehicleModal ? "openModal" : "section_title"}>
+      <h1 className={openVehicleModal ? "openModal" : "section_title_global"}>
         Vehicles
       </h1>
-      <main className={openVehicleModal ? "openModal" : "section-global"}>
+      <main className={openVehicleModal ? "openModal" : "section_global"}>
         <VehiclesTable />
       </main>
     </Wrapper>

@@ -1,5 +1,5 @@
 import { useGlobalContext } from "../../contextAPI";
-import Wrapper from "../../styleWrappers/stylesAddVehicleModal";
+import Wrapper from "../../styleWrappers/stylesCreateVehicleModal";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import supabase from "../../config/supabaseClient";
 import { toast } from "react-hot-toast";
@@ -47,9 +47,9 @@ const CreateVehicleModal = () => {
 
   return (
     <Wrapper>
-      <main>
+      <main className="section_global">
+        <h2 className="section_title_global">Create New Vehicle</h2>
         <form onSubmit={handleSubmit}>
-          <h2>Add New Vehicle</h2>
           <label>Vehicle Brand</label>
           <input required type="text" name="name" onChange={handleChange} />
 

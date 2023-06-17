@@ -17,7 +17,13 @@ const GlobalStyles = createGlobalStyle`
   --clr-btn-hover:#2f58cd;
   --clr-bg-main:#d8E1E6;
   --clr-bg-dashcard:#2d363b;
-  --radius:5px;
+  --radius-5:5px;
+  --radius-10:10px;
+
+
+--border-b:1px solid blue;
+--border-r:1px solid red;
+--border-g:1px solid green;
 
 
 /* animation variables */
@@ -82,7 +88,7 @@ body {
   background-color:var(--clr-btn-hover);
 }
 
-.section-global {
+.section_global {
   position: absolute;
   top: 20%;
   left: 25%;
@@ -90,7 +96,7 @@ body {
   height: 80vh;
 }
 
-.section_title {
+.section_title_global {
   position: absolute;
   top: 12%;
   left: 25%;
@@ -100,11 +106,11 @@ body {
   text-transform:uppercase;
 }
 
-.table-global{
+.table_global{
   color:var(--clr-font-darkgrey);
   width: 100%;
   background-color: var(--clr-bg-form);
-  border-radius: 10px;
+  border-radius: var(--radius-10);
   border-collapse: seperate;
   border-spacing: 0;
   overflow: hidden;

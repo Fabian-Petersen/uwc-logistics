@@ -5,8 +5,8 @@ import BookingTablev2 from "../components/bookings/BookingTablev2";
 const Bookings = () => {
   return (
     <Wrapper>
-      <h1 className="section_title">Booking Information</h1>
-      <main className="section-global">
+      <h1 className="section_title_global">Booking Information</h1>
+      <main className="section_global">
         <BookingTablev2 />
       </main>
     </Wrapper>

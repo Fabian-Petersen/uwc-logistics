@@ -10,11 +10,11 @@ const Wrapper = styled.main`
     width: 100%;
     height: 4rem;
   }
-  
+  */
+
   .openModal {
     visibility: hidden;
   }
-  */
 `;
 
 export default Wrapper;

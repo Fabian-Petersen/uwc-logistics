@@ -1,23 +1,36 @@
-import { useGlobalContext } from "../../contextAPI";
+// import { useGlobalContext } from "../../contextAPI";
 import supabase from "../../config/supabaseClient";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Wrapper from "../../styleWrappers/stylesBookingTable";
 import { format } from "date-fns";
 import DataTable from "react-data-table-component";
 
 const BookingTablev2 = () => {
-  const { bookingsData, setBookingsData } = useGlobalContext();
+  // const { bookingsData, setBookingsData } = useGlobalContext();
+
+  const queryClient = useQueryClient();
 
   const bookingData = async () => {
     try {
       const { data, error } = await supabase
         .from("booking")
         .select(
-          "created_at,reason, start_date, return_date, vehicles(name, model,registration)"
+          "created_at, reason, return_date, start_date,  vehicles(name, registration, model)"
         );
       if (data) {
-        setBookingsData(data);
+        data.forEach((obj) => {
+          (obj.created_at = format(new Date(obj.created_at), "dd/MM/yyyy")),
+            (obj.start_date = format(new Date(obj.start_date), "dd/MM/yyyy")),
+            (obj.return_date = format(new Date(obj.return_date), "dd/MM/yyyy"));
+        });
       }
+
+      if (isLoading) {
+        return <h2>Loading...</h2>;
+      }
+
+      if (data === [])
+        return <h2>Data cannot be retrieved at the moment....</h2>;
 
       if (error) throw Error;
       return data;
@@ -26,17 +39,44 @@ const BookingTablev2 = () => {
     }
   };
 
-  useQuery({
+  queryClient.prefetchQuery({
     queryKey: ["bookings"],
     queryFn: bookingData,
   });
 
+  const { data, isLoading } = useQuery({
+    queryKey: ["bookings"],
+    queryFn: bookingData,
+  });
+
+  const newBookings = [];
+
+  for (const {
+    created_at,
+    reason,
+    start_date,
+    return_date,
+    vehicles: { name, model, registration },
+  } of data) {
+    newBookings.push({
+      created_at,
+      reason,
+      model,
+      registration,
+      start_date,
+      return_date,
+      name,
+    });
+
+    if (!data || data.length === 0) {
+      console.log("data cannot be retrieved");
+      // return <h2>Data Cannot Be Retrieved</h2>;
+    }
+  }
+
+  console.log(newBookings);
   // Add simple functionality to the table using react-data-table npm package
   // format(new Date(created_at), "dd/MM/yyyy"));
-
-  bookingsData.forEach((obj) => {
-    obj.created_at = format(new Date(obj.created_at), "yyyy/MM/dd");
-  });
 
   const columns = [
     {
@@ -70,21 +110,20 @@ const BookingTablev2 = () => {
       name: "Registration",
       selector: (row) => row.registration,
     },
-    {
-      name: "Driver",
-      selector: (row) => row.driver,
-    },
+    // {
+    //   name: "Driver",
+    //   selector: (row) => row.driver,
+    // },
   ];
 
-  const data = bookingsData;
   return (
     <Wrapper>
       <main className="section">
         <DataTable
           columns={columns}
-          data={data}
+          data={newBookings}
           pagination
-          className="table-global"
+          className="table_global"
           customStyles={customStyles}
         />
       </main>
@@ -110,6 +149,9 @@ const customStyles = {
     style: {
       backgroundColor: "#d2d3d3",
     },
+  },
+  pagination: {
+    backgroundColor: "transparent",
   },
   cells: {
     style: { backgroundColor: "#f8f6f4" },

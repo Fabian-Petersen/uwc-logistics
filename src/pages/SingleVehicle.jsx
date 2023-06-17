@@ -14,7 +14,7 @@ const SingleVehicle = () => {
   const { name, model } = singleVehicle;
   return (
     <Wrapper>
-      <h1 className="section_title">
+      <h1 className="section_title_global">
         Single Vehicle / {name} {vehicleId}
       </h1>
       <ul>
@@ -23,7 +23,7 @@ const SingleVehicle = () => {
         {/* <li>{registration}</li>
         <li>{year}</li> */}
       </ul>
-      <main>
+      <main className="section_global">
         <Link className="link" to="/vehicles">
           <button className="btn-global">Back to Vehicles</button>
         </Link>
