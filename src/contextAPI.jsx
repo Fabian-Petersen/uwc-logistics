@@ -42,10 +42,11 @@ const AppProvider = ({ children }) => {
 
   const [createNewVehicle, setCreateNewVehicle] = useState({
     name: "",
-    model: "",
-    year: "",
-    registration: "",
-    start_km: "",
+    // model: "",
+    // year: "",
+    // registration: "",
+    // start_km: "",
+    // image: "",
   });
 
   //$ 9. ====== Store the user token in the browser storage if login successful  ====== //
@@ -85,6 +86,8 @@ const AppProvider = ({ children }) => {
 
   //$ 15. ====== Vehicle Modal Component - State to open and close the modal to add a new vehicle  ====== //
   const [openVehicleModal, setOpenVehicleModal] = useState(false);
+  // State for the image uplaod
+  const [fileValue, setFileValue] = useState(null);
 
   useEffect(() => {
     if (sessionStorage.getItem("token")) {
@@ -128,6 +131,8 @@ const AppProvider = ({ children }) => {
         setOpenVehicleModal,
         createNewVehicle,
         setCreateNewVehicle,
+        fileValue,
+        setFileValue,
       }}
     >
       {children}

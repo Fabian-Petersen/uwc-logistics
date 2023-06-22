@@ -13,6 +13,8 @@ const Wrapper = styled.ul`
     background-color: var(--clr-bg-form);
     padding: 0.5rem 2rem;
     gap: 2rem;
+    border-bottom: 0.5px solid var(--clr-font-lightgrey);
+    box-shadow: 0.3px 0 5px 1px rgba(0, 0, 0, 0.2);
     /* border: 1px solid yellow; */
   }
 

@@ -54,11 +54,11 @@ const VehiclesTable = () => {
               <td scope="col">Functions</td>
             </tr>
           </thead>
-          {vehicles.map((item) => {
-            const { name, id, model, year, start_km, registration } = item;
-            return (
-              <tbody key={id}>
-                <tr className="tableRows">
+          <tbody>
+            {vehicles.map((item) => {
+              const { name, id, model, year, start_km, registration } = item;
+              return (
+                <tr key={id} className="tableRows">
                   <td>{name}</td>
                   <td>{model}</td>
                   <td>{year}</td>
@@ -78,19 +78,19 @@ const VehiclesTable = () => {
                     </Link>
                   </td>
                 </tr>
-              </tbody>
-            );
-          })}
-          <tfoot className="btn-container">
-            <td colSpan="8">
-              <button
-                className="btn-global btn-vehicleTable"
-                onClick={() => setOpenVehicleModal(true)}
-              >
-                Add Vehicle
-              </button>
-            </td>
-          </tfoot>
+              );
+            })}
+            <tr className="btn-container">
+              <td colSpan="8">
+                <button
+                  className="btn-global btn-vehicleTable"
+                  onClick={() => setOpenVehicleModal(true)}
+                >
+                  Add Vehicle
+                </button>
+              </td>
+            </tr>
+          </tbody>
         </table>
       </main>
     </Wrapper>

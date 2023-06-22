@@ -13,7 +13,8 @@ const Wrapper = styled.main`
 
   thead > tr {
     border-top-right-radius: 15px;
-    background-color: lightgray;
+    background-color: var(--clr-table-header);
+    color: var(--clr-white);
     height: 5rem;
     /* border: 1px solid red; */
   }
@@ -28,13 +29,13 @@ const Wrapper = styled.main`
   }
 
   tbody tr:nth-of-type(2n) {
-    background: lightskyblue;
+    background: var(--clr-bg-tableRow-light);
     width: 100%;
   }
 
   tbody:last-child {
     margin-bottom: 2rem;
-    border: var(--border-g);
+    /* border: var(--border-g); */
   }
 
   td {

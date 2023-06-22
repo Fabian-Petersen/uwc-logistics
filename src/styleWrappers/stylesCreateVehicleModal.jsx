@@ -2,55 +2,50 @@ import styled from "styled-components";
 
 const Wrapper = styled.main`
   form {
-    position: absolute;
     display: flex;
     flex-direction: column;
-    width: 35%;
-    /* border: 1px solid blue; */
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: 45%;
+    margin: 0 auto;
     background-color: var(--clr-bg-form);
-    padding: 1rem 2rem;
-    border-radius: 5px;
+    padding: 0rem 2rem;
+    border-radius: var(--radius-5);
+    gap: 1rem;
   }
 
   label {
-    font-size: 1.8rem;
+    height: 2rem;
+    font-size: 1.5rem;
     color: var(--clr-primary);
     text-transform: capitalize;
+    margin: 0;
+    padding: 0.5rem;
   }
 
   input {
-    height: 3.5rem;
     border: none;
-    padding: 0.3rem 1.3rem;
-    border-radius: 5px;
-    font-size: 1.8rem;
-    margin-bottom: 2.5rem;
+    height: 3rem;
+    border-radius: var(--radius-5);
+    font-size: 1.5rem;
+  }
+
+  form :nth-child(12) {
+    /* border: var(--border-r); */
+    padding-bottom: 3rem;
   }
 
   input:focus {
     outline: 1px solid var(--clr-input-focus);
   }
 
-  h2 {
-    color: var(--clr-primary);
-    margin: 1.5rem auto;
-    font-size: 3rem;
-  }
-
   .flex-buttons {
     display: flex;
     gap: 2rem;
-    width: 80%;
-    margin: 0 auto;
-    margin-bottom: 2rem;
-    /* border: 1px solid red; */
+    width: 70%;
+    margin: 2rem auto;
   }
 
   .flex-buttons button {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     width: 100%;
   }
 `;
