@@ -4,7 +4,7 @@ const Wrapper = styled.main`
   .container {
     display: grid;
     height: 75vh;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 2fr 1fr;
     gap: 2rem;
     background-color: var(--clr-bg-form);
     padding: 2rem;
@@ -13,15 +13,6 @@ const Wrapper = styled.main`
   }
 
   .container ul {
-    /* border: var(--border-r); */
-  }
-
-  img {
-    width: 100%;
-    height: 75%;
-    margin-bottom: 2rem;
-    border-radius: var(--radius-5);
-    background-size: fit;
     /* border: var(--border-r); */
   }
 

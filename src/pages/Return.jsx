@@ -4,8 +4,9 @@ import supabase from "../config/supabaseClient";
 import { useNavigate } from "react-router-dom";
 
 const Return = () => {
-  const { vehicles, token, returnVehicle, setReturnVehicle } =
+  const { vehicles, token, returnVehicle, setReturnVehicle, setStatus } =
     useGlobalContext();
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -14,7 +15,6 @@ const Return = () => {
         ...prevUserData,
         [e.target.name]: e.target.value,
         driver: token.user.user_metadata.name,
-        available: true,
       };
     });
     console.log(returnVehicle);
@@ -29,6 +29,7 @@ const Return = () => {
 
       if (data) {
         console.log(data);
+        setStatus("available");
       }
       if (error) throw Error;
     } catch (error) {

@@ -42,11 +42,12 @@ const AppProvider = ({ children }) => {
 
   const [createNewVehicle, setCreateNewVehicle] = useState({
     name: "",
-    // model: "",
-    // year: "",
-    // registration: "",
-    // start_km: "",
-    // image: "",
+    model: "",
+    year: "",
+    registration: "",
+    start_km: "",
+    image: "",
+    status: "",
   });
 
   //$ 9. ====== Store the user token in the browser storage if login successful  ====== //
@@ -58,7 +59,7 @@ const AppProvider = ({ children }) => {
   const [openNav, setOpenNav] = useState(true);
 
   //$ 11. ====== Return Component - State to show availability of the vehicle ====== //
-  const [available, setAvailable] = useState(true);
+  const [status, setStatus] = useState("");
 
   //$ 12. ====== Booking Component - State of the initial form to book a vehicle  ====== //
   const [createNewBooking, setCreateNewBooking] = useState({
@@ -69,6 +70,9 @@ const AppProvider = ({ children }) => {
     return_time: "",
     vehicleId: "",
     userId: "",
+    driver: "",
+    registration: "",
+    status: "",
   });
 
   //$ 13. ====== Dashboard Component - State of the booking data stored on the server  ====== //
@@ -81,13 +85,15 @@ const AppProvider = ({ children }) => {
     end_km: "",
     return_time: "",
     driver: "",
-    available: true,
+    status: "",
   });
 
   //$ 15. ====== Vehicle Modal Component - State to open and close the modal to add a new vehicle  ====== //
   const [openVehicleModal, setOpenVehicleModal] = useState(false);
-  // State for the image uplaod
+  // State for the single image uplaod
   const [fileValue, setFileValue] = useState(null);
+  // State for mulitple images upload
+  const [fileValues, setFileValues] = useState(null);
 
   useEffect(() => {
     if (sessionStorage.getItem("token")) {
@@ -121,8 +127,8 @@ const AppProvider = ({ children }) => {
         setOpenNav,
         createNewBooking,
         setCreateNewBooking,
-        available,
-        setAvailable,
+        status,
+        setStatus,
         returnVehicle,
         setReturnVehicle,
         bookingsData,
@@ -133,6 +139,8 @@ const AppProvider = ({ children }) => {
         setCreateNewVehicle,
         fileValue,
         setFileValue,
+        fileValues,
+        setFileValues,
       }}
     >
       {children}

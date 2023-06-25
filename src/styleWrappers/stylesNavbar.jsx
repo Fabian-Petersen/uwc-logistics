@@ -42,13 +42,14 @@ const Wrapper = styled.ul`
   }
 
   .nav-button {
-    padding: 0.75rem 2rem;
+    padding: 0.5rem;
     border-radius: 15px;
     font-size: 1.5rem;
-    transition: transform 0.2s ease-in;
+    transition: var(--transition-2);
     text-transform: uppercase;
     max-width: 10rem;
     flex: 1;
+    text-align: center;
   }
 
   .welcome-title {
@@ -64,9 +65,16 @@ const Wrapper = styled.ul`
   }
 
   .btn-login {
-    color: white;
-    background-color: var(--clr-bg-login);
+    color: var(--clr-bg-login);
+    background-color: none;
+    border: 1.5px solid var(--clr-bg-login);
     margin-right: 0;
+  }
+
+  .btn-login:hover {
+    color: var(--clr-white);
+    background-color: var(--clr-bg-login);
+    /* border: none; */
   }
 
   .btn-signup {
@@ -77,7 +85,7 @@ const Wrapper = styled.ul`
 
   .nav-button:hover {
     cursor: pointer;
-    transform: translateY(-1.5px);
+    /* transform: translateY(-1.2px); */
   }
 
   Navlink {

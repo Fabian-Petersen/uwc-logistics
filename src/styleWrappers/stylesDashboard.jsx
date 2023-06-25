@@ -27,7 +27,7 @@ const Wrapper = styled.main`
     color: var(--clr-white);
     outline: none;
     border: none;
-    border-radius: var(--radius);
+    border-radius: var(--radius-5);
     /* border: 1px solid blueviolet; */
   }
 

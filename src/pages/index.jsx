@@ -6,6 +6,8 @@ import Return from "./Return";
 import Vehicles from "./Vehicles";
 import Bookings from "./Bookings";
 import SingleVehicle from "./SingleVehicle";
+import Users from "./Users";
+import ProtectedRoute from "./ProtectedRoute";
 
 export {
   Home,
@@ -16,4 +18,6 @@ export {
   Vehicles,
   Bookings,
   SingleVehicle,
+  Users,
+  ProtectedRoute,
 };

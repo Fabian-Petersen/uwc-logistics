@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { useGlobalContext } from "../contextAPI";
 import { NavLink } from "react-router-dom";
 import { navLinks } from "../../assets/data/navLinks";
-// import icons from "../assets/data/icons";
 import Wrapper from "../../styleWrappers/stylesSidebar";
 
 const Sidebar = () => {

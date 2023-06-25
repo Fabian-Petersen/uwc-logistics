@@ -1,30 +1,12 @@
-import { useGlobalContext } from "../../contextAPI";
-import supabase from "../../config/supabaseClient";
-import { useQuery } from "@tanstack/react-query";
+// import { useGlobalContext } from "../../contextAPI";
 import Wrapper from "../../styleWrappers/stylesBookingTable";
-import { format } from "date-fns";
+// import { format } from "date-fns";
+import useBookings from "../bookings/useBookings";
 
 const BookingTable = () => {
-  const { bookingsData, setBookingsData } = useGlobalContext();
-
-  const bookingData = async () => {
-    try {
-      const { data, error } = await supabase.from("booking").select("*");
-
-      if (data) {
-        setBookingsData(data);
-      }
-      if (error) throw Error;
-      return data;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useQuery({
-    queryKey: ["bookings"],
-    queryFn: bookingData,
-  });
+  const { bookings } = useBookings();
+  // console.log(bookings);
+  // const { bookingsData, setBookingsData } = useGlobalContext();
 
   return (
     <Wrapper>
@@ -40,21 +22,23 @@ const BookingTable = () => {
               <td>End Time</td>
             </tr>
           </thead>
-          {bookingsData.map((booking) => {
+          {bookings.map((booking) => {
             const {
               id,
-              created_at,
+              created_at: created,
               reason,
               vehicle,
               driver,
               start_time,
               end_time,
             } = booking;
-            const formattedDate = format(new Date(created_at), "dd/MM/yyyy");
+            {
+              /* const formattedDate = format(new Date(created_at), "dd/MM/yyyy"); */
+            }
             return (
               <tbody key={id}>
                 <tr className="tableRows">
-                  <td>{formattedDate}</td>
+                  <td>{created}</td>
                   <td>{reason}</td>
                   <td>{vehicle}</td>
                   <td>{driver}</td>

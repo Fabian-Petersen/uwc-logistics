@@ -1,11 +1,12 @@
 import { Link, useParams } from "react-router-dom";
 import Wrapper from "../styleWrappers/stylesSingleVehicle";
 // import { useGlobalContext } from "../contextAPI";
-import { useVehicles } from "../services/useVehicles";
+import useVehiclesQuery from "../components/vehicles/useVehiclesQuery";
+import ProductImages from "../components/vehicles/ProductImages";
 
 const SingleVehicle = () => {
   const { vehicleId } = useParams();
-  const { vehicles } = useVehicles();
+  const { data: vehicles } = useVehiclesQuery();
 
   const singleVehicle = [
     vehicles.find((item) => item.id === parseInt(vehicleId)),
@@ -23,13 +24,12 @@ const SingleVehicle = () => {
             id,
             registration,
             year,
-            image,
             model,
             start_km: kilometers,
           } = vehicle;
           return (
             <div key={id} className="container">
-              <img src={image} alt={name} />
+              <ProductImages />
               <div className="infoContainer">
                 <ul className="text">
                   <li>Vehicle:</li>

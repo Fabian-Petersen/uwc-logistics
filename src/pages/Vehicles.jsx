@@ -4,7 +4,8 @@ import supabase from "../config/supabaseClient";
 import { useQuery } from "@tanstack/react-query";
 import { useGlobalContext } from "../contextAPI";
 import { toast } from "react-hot-toast";
-import CreateVehicleModal from "../components/vehicles/CreateVehicleModal";
+import CreateVehicleModalMulti from "../components/vehicles/CreateVehicleModalMulti";
+// import CreateVehicleModal from "../components/vehicles/CreateVehicleModal";
 
 const Vehicles = () => {
   const { setFetchError, setVehicles, openVehicleModal } = useGlobalContext();
@@ -34,7 +35,7 @@ const Vehicles = () => {
 
   return (
     <Wrapper>
-      {openVehicleModal ? <CreateVehicleModal /> : ""}
+      {openVehicleModal ? <CreateVehicleModalMulti /> : ""}
       <h1 className={openVehicleModal ? "openModal" : "section_title_global"}>
         Vehicles
       </h1>

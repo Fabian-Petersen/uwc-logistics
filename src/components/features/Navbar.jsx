@@ -4,9 +4,8 @@ import { useNavigate } from "react-router-dom";
 import supabase from "../../config/supabaseClient";
 
 const Navbar = () => {
-  const { setToken, login, setLogin, userData, token } = useGlobalContext();
+  const { setToken, login, setLogin, token } = useGlobalContext();
   const navigate = useNavigate();
-  // console.log(token);
 
   const handleLogin = () => {
     setLogin(true);
@@ -20,7 +19,6 @@ const Navbar = () => {
       setToken(false);
       setLogin(!login);
       navigate("/");
-      console.log(userData);
     } catch (error) {
       console.log(error);
     }
@@ -66,20 +64,4 @@ const Navbar = () => {
     </Wrapper>
   );
 };
-
-// (
-//   <li onClick={handleSignUp} className="signup">
-//     sign up
-//   </li>
-// )
-
-// {auth ? (
-//   ""
-// ) : (
-//   <NavLink to="/register">
-//     <li onClick={handleSignUp} className="signup">
-//       sign up
-//     </li>
-//   </NavLink>
-// )}
 export default Navbar;

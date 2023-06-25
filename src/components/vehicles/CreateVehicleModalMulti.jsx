@@ -7,20 +7,18 @@ import { supabaseUrl } from "../../config/supabaseClient";
 
 // ================================================== Add A New Vehicle ================================================ //
 
-const CreateVehicleModal = () => {
+const CreateVehicleModalMulti = () => {
   const {
     setOpenVehicleModal,
     setCreateNewVehicle,
     createNewVehicle,
-    setFileValue,
-    fileValue,
+    setFileValues,
+    fileValues,
   } = useGlobalContext();
 
   const handleFileChange = (e) => {
-    setFileValue(e.target.files);
+    setFileValues(Array.from(e.target.files));
   };
-
-  console.log(fileValue);
 
   const queryClient = useQueryClient();
 
@@ -32,40 +30,61 @@ const CreateVehicleModal = () => {
       };
     });
   };
-
   const { mutate } = useMutation(
     async (newData) => {
-      // console.log(newData);
-      // const fileName = `${Math.random()}.${newData.image}`.replaceAll("/", "");
-      const fileName = `${Math.random()}-${newData.image[0].name}`.replaceAll(
-        "/",
-        ""
+      const imageNames = newData.images.map((file) =>
+        `${Math.random()}.${file.name}`.replaceAll("/", "")
       );
-      const imagePath = `${supabaseUrl}/storage/v1/object/public/vehicle-images/${fileName}`;
+      // console.log(imageNames);
+
+      const imagePaths = imageNames.map(
+        (name) =>
+          `${supabaseUrl}/storage/v1/object/public/vehicle-images/${name}`
+      );
+      // console.log(imagePaths);
 
       // 1. Create new vehicle
       const { data, error } = await supabase
         .from("vehicles")
-        .insert([{ ...newData, image: imagePath }]);
-
-      // 2. Upload Images
-      const { error: storageError } = await supabase.storage
-        .from("vehicle-images")
-        .upload(fileName, newData.image[0]);
-
-      // 3. If there is an error to upload image , then delete the data
-      if (storageError) {
-        // await supabase.from("vehicles").delete().eq("id", newData.id);
-        console.log(storageError);
-        throw new Error(
-          toast.error("Error uploading image, cannot create new vehicle")
-        );
-      }
+        .insert([{ ...newData, images: imagePaths }]);
 
       if (error) {
-        throw new Error(error.message);
+        console.log(error);
       }
 
+      // 2. Upload Images
+      const files = newData.images;
+      const images = [];
+      for (const file of files) {
+        const { data, error: storageError } = await supabase.storage
+          .from("vehicle-images")
+          .upload(file.name, file);
+        console.log(file.name);
+
+        if (storageError) {
+          throw new Error("Error uploading image");
+        }
+
+        images.push(data.Key);
+
+        return images;
+
+        // export async function uploadImages(files) {
+        //   const images = [];
+
+        //   for (const file of files) {
+        //     const { data, error } = await supabase.storage.from('bucket-name').upload(file.name, file);
+
+        //     if (error) {
+        //       throw new Error('Error uploading image');
+        //     }
+
+        //     images.push(data.Key);
+        //   }
+
+        //   return images;
+        // }
+      }
       return data;
     },
     {
@@ -79,9 +98,10 @@ const CreateVehicleModal = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    mutate({ ...createNewVehicle, image: fileValue });
-    const data = { ...createNewVehicle, image: fileValue };
-    console.log(data);
+    mutate({ ...createNewVehicle, images: fileValues });
+    // const data = { ...createNewVehicle, images: fileValues };
+    // console.log(data);
+    // console.log(fileValues);
 
     // Reset The Form
     setCreateNewVehicle("");
@@ -133,4 +153,4 @@ const CreateVehicleModal = () => {
   );
 };
 
-export default CreateVehicleModal;
+export default CreateVehicleModalMulti;

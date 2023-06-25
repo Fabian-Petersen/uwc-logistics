@@ -1,54 +1,32 @@
-// import { useGlobalContext } from "../../contextAPI";
-import supabase from "../../config/supabaseClient";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Wrapper from "../../styleWrappers/stylesBookingTable";
 import { format } from "date-fns";
 import DataTable from "react-data-table-component";
+import { toast } from "react-hot-toast";
+import useBookingsQuery from "./useBookingsQuery";
 
 const BookingTablev2 = () => {
-  // const { bookingsData, setBookingsData } = useGlobalContext();
+  const { data, isLoading, isError } = useBookingsQuery();
 
-  const queryClient = useQueryClient();
+  // loop over the dates and format using date-fns
+  if (data) {
+    data.forEach((obj) => {
+      obj.created_at = format(new Date(obj.created_at), "dd/MM/yyyy");
+      (obj.start_date = format(new Date(obj.start_date), "dd/MM/yyyy")),
+        (obj.return_date = format(new Date(obj.return_date), "dd/MM/yyyy"));
+    });
+  }
 
-  const bookingData = async () => {
-    try {
-      const { data, error } = await supabase
-        .from("booking")
-        .select(
-          "created_at, reason, return_date, start_date,  vehicles(name, registration, model)"
-        );
-      if (data) {
-        data.forEach((obj) => {
-          (obj.created_at = format(new Date(obj.created_at), "dd/MM/yyyy")),
-            (obj.start_date = format(new Date(obj.start_date), "dd/MM/yyyy")),
-            (obj.return_date = format(new Date(obj.return_date), "dd/MM/yyyy"));
-        });
-      }
+  if (isLoading) {
+    return <h2>Loading...</h2>;
+  }
 
-      if (isLoading) {
-        return <h2>Loading...</h2>;
-      }
+  if (data === []) return <h2>There are no bookings at the moment....</h2>;
 
-      if (data === [])
-        return <h2>Data cannot be retrieved at the moment....</h2>;
+  if (isError) {
+    return <h2>Error loading bookings....</h2>;
+  }
 
-      if (error) throw Error;
-      return data;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  queryClient.prefetchQuery({
-    queryKey: ["bookings"],
-    queryFn: bookingData,
-  });
-
-  const { data, isLoading } = useQuery({
-    queryKey: ["bookings"],
-    queryFn: bookingData,
-  });
-
+  // ===================================================== Destructure the bookings object ========================================= //
   const newBookings = [];
 
   for (const {
@@ -56,27 +34,29 @@ const BookingTablev2 = () => {
     reason,
     start_date,
     return_date,
-    vehicles: { name, model, registration },
+    vehicles,
   } of data) {
-    newBookings.push({
-      created_at,
-      reason,
-      model,
-      registration,
-      start_date,
-      return_date,
-      name,
-    });
-
-    if (!data || data.length === 0) {
-      console.log("data cannot be retrieved");
-      // return <h2>Data Cannot Be Retrieved</h2>;
+    if (vehicles && vehicles.name && vehicles.model && vehicles.registration) {
+      const destructedData = {
+        created_at,
+        reason,
+        start_date,
+        return_date,
+        name: vehicles.name,
+        model: vehicles.model,
+        registration: vehicles.registration,
+      };
+      // console.log("newBookings:", newBookings);
+      newBookings.push(destructedData);
     }
   }
 
-  console.log(newBookings);
-  // Add simple functionality to the table using react-data-table npm package
-  // format(new Date(created_at), "dd/MM/yyyy"));
+  if (!data || data.length === 0) {
+    toast.error("data cannot be retrieved");
+    return <h2>Data Cannot Be Retrieved</h2>;
+  }
+
+  // ================================================== Construct the columns for using the react data table with the newBookings array ========================= //
 
   const columns = [
     {
@@ -140,14 +120,14 @@ const customStyles = {
     style: {
       fontSize: "1.5rem",
       fontWeight: "700",
-      backgroundColor: "#d2d3d3",
-      color: "#6d6d6d;",
+      backgroundColor: "rgba(10, 110, 189, 0.85)",
+      color: "#fff;",
       padding: "1.2rem",
     },
   },
   header: {
     style: {
-      backgroundColor: "#d2d3d3",
+      backgroundColor: "rgba(10, 110, 189, 0.85)",
     },
   },
   pagination: {

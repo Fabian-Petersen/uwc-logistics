@@ -13,6 +13,7 @@ const CreateBooking = () => {
     setVehicles,
     vehicles,
   } = useGlobalContext();
+
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
@@ -21,13 +22,12 @@ const CreateBooking = () => {
 
     if (data) {
       setVehicles(data);
-      // setVehicles(data.filter((item) => item.available === true));
     }
 
     if (error) {
       console.log(error);
     }
-    return data;
+    return vehicles;
   };
 
   useQuery({
@@ -43,18 +43,17 @@ const CreateBooking = () => {
         driver: token.user.user_metadata.name,
       };
     });
-    console.log(createNewBooking);
   };
 
   const { mutate } = useMutation(
     async (newData) => {
-      const { data, error } = await supabase.from("booking").insert(newData);
+      const { error } = await supabase.from("booking").insert(newData);
 
       if (error) {
-        throw new Error();
+        console.log(error);
       }
 
-      return data;
+      // return data;
     },
     {
       onSuccess: () => {
@@ -72,30 +71,9 @@ const CreateBooking = () => {
     e.preventDefault();
     const newData = createNewBooking;
     mutate(newData);
+
+    // console.log(newData);
   };
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const { data, error } = await supabase
-  //       .from("booking")
-  //       .insert(createNewBooking);
-
-  //     if (data) {
-  //       console.log(data);
-  //       toast.success("Success");
-  //     }
-
-  //     if (error) {
-  //       console.log(error);
-  //     }
-
-  //     return data;
-  //    setTimeout(() => navigate("/dashboard"), 3000);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   return (
     <Wrapper>
@@ -106,8 +84,7 @@ const CreateBooking = () => {
             <div className="vehicle flex_column">
               <label>Select Vehicle</label>
               <select
-                name="vehicle"
-                id="vehicles"
+                name="registration"
                 placeholder="select vehicle"
                 onChange={handleChange}
               >
@@ -116,11 +93,9 @@ const CreateBooking = () => {
                   const { id, registration } = vehicle;
                   return (
                     <option
-                      required
                       key={id}
-                      name="vehicle"
-                      value={registration}
-                      onChange={handleChange}
+                      // name="registration"
+                      // onChange={handleChange}
                     >
                       {registration}
                     </option>
@@ -128,22 +103,18 @@ const CreateBooking = () => {
                 })}
               </select>
             </div>
+
             <div className="flex_column">
               <label htmlFor="vehicle">Reason</label>
-              <input
-                required
-                type="text"
-                name="reason"
-                onChange={handleChange}
-              />
+              <input type="text" name="reason" onChange={handleChange} />
             </div>
           </div>
+
           <div className="row">
             <div className="startDate flex_column">
               <label>Start Date</label>
               <input
                 placeholder="Enter Start Kilometers"
-                required
                 type="date"
                 name="start_date"
                 onChange={handleChange}
@@ -153,7 +124,6 @@ const CreateBooking = () => {
               <label>Return Date</label>
               <input
                 placeholder="Enter Return Date"
-                required
                 type="date"
                 name="return_date"
                 onChange={handleChange}

@@ -7,6 +7,8 @@ import {
   Vehicles,
   Bookings,
   SingleVehicle,
+  Users,
+  ProtectedRoute,
 } from "./pages/index";
 import Home from "../src/pages/Home";
 import { Navbar, Sidebar } from "./components";
@@ -18,6 +20,8 @@ import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
+// import useUser from "../src/components/authentication/useUser";
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -28,6 +32,7 @@ const queryClient = new QueryClient({
 
 const App = () => {
   const { token } = useGlobalContext();
+  // const { data: user } = useUser();
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -44,10 +49,22 @@ const App = () => {
             ""
           )}
           {token ? <Route path="return" element={<Return />} /> : ""}
-          {token ? <Route path="vehicles" element={<Vehicles />} /> : ""}
+          {token ? (
+            <Route
+              path="vehicles"
+              element={
+                <ProtectedRoute>
+                  <Vehicles />
+                </ProtectedRoute>
+              }
+            />
+          ) : (
+            ""
+          )}
           {token ? <Route path="bookings" element={<Bookings />} /> : ""}
           <Route path="register" element={<Register />} />
           <Route path="vehicles/:vehicleId" element={<SingleVehicle />} />
+          <Route path="users" element={<Users />} />
         </Routes>
         <Toaster
           position="top-center"
