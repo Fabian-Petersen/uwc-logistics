@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 const Wrapper = styled.main`
+  position: relative;
+  /* border: var(--border-r); */
+
   thead > tr td {
     font-size: 2rem;
     font-weight: 700;
@@ -88,6 +91,49 @@ const Wrapper = styled.main`
 
   .btn-container td button {
     width: 100%;
+  }
+
+  .rdt_Pagination {
+    background-color: transparent;
+    border: none;
+    color: var(--clr-font-dark);
+  }
+
+  .rdt_TableRow input[type="checkbox"]:checked {
+    fill: rgba(10, 110, 189, 0.85);
+  }
+
+  .rdt_TableHeader {
+    color: transparent;
+    background-color: transparent;
+  }
+
+  .icHRoc {
+    background-color: transparent;
+    color: var(--clr-bg-login);
+  }
+
+  .showBtuton {
+    opacity: 1;
+  }
+
+  .hideButton {
+    opacity: 0;
+  }
+
+  #actionButton {
+    position: absolute;
+    top: 1%;
+    left: 92%;
+    font-size: 1rem;
+    background-color: var(--clr-primary);
+    z-index: 1000;
+  }
+
+  #actionButton:hover {
+    cursor: pointer;
+    transform: var(--transform-2);
+    background-color: var(--clr-bg-login);
   }
 `;
 

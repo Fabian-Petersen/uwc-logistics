@@ -43,6 +43,16 @@ const Wrapper = styled.main`
     color: var(--clr-font-dark);
     /* fill: var(--clr-font-dark); */
   }
+
+  .rdt_Pagination {
+    background-color: transparent;
+    border: none;
+    color: var(--clr-font-dark);
+  }
+
+  .sc-kdBSHD .eIbmKX {
+    fill: blue;
+  }
 `;
 
 export default Wrapper;

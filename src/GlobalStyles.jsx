@@ -108,7 +108,6 @@ body {
   left: 25%;
   width: 70vw;
   height: 80vh;
-  ${"" /* border:var(--border-g); */}
 }
 
 .section_title_global {
@@ -134,14 +133,18 @@ body {
 }
 
 input,select {
-  width: 100%;
   border:none;
   font-size: 1.5rem;
   height: 5rem;
   border-radius: 5px;
   padding: 1rem;
-  color:var(--clr-font-darkgrey);
+  color:var(--clr-primary);
   }
+  
+  input[type="checkbox"]:checked {
+    background-color: var(--clr-primary);
+  }
+
 
 input:focus{
   outline:var(--clr-yellow);

@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useGlobalContext } from "../contextAPI";
 import { toast } from "react-hot-toast";
 import CreateVehicleModalMulti from "../components/vehicles/CreateVehicleModalMulti";
+import Spinner from "../components/features/Spinner";
 // import CreateVehicleModal from "../components/vehicles/CreateVehicleModal";
 
 const Vehicles = () => {
@@ -24,6 +25,7 @@ const Vehicles = () => {
       toast.error("Cannot retrieve vehicles list");
       setVehicles(null);
       console.log(error);
+      return <Spinner />;
     }
     return data;
   };

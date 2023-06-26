@@ -1,8 +1,8 @@
 import supabase from "../../config/supabaseClient";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 const useVehiclesQuery = () => {
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
 
   const getVehicles = async () => {
     const { data, error } = await supabase.from("vehicles").select("*");
@@ -15,16 +15,20 @@ const useVehiclesQuery = () => {
     return data;
   };
 
-  function prefetchUsers() {
-    return queryClient.prefetchQuery({
-      queryKey: ["vehicles"],
-      queryFn: getVehicles,
-    });
-  }
+  // function prefetchUsers() {
+  //   return queryClient.prefetchQuery({
+  //     queryKey: ["vehicles"],
+  //     queryFn: getVehicles,
+  //   });
+  // }
 
-  prefetchUsers();
+  // prefetchUsers();
 
-  return useQuery({ queryKey: ["vehicles"], queryFn: getVehicles });
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["vehicles"],
+    queryFn: getVehicles,
+  });
+  return { isLoading, error, data };
 };
 
 export default useVehiclesQuery;

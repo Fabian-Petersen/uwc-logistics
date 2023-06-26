@@ -3,6 +3,7 @@ import { format } from "date-fns";
 import DataTable from "react-data-table-component";
 import { toast } from "react-hot-toast";
 import useBookingsQuery from "./useBookingsQuery";
+import Spinner from "../features/Spinner";
 
 const BookingTablev2 = () => {
   const { data, isLoading, isError } = useBookingsQuery();
@@ -17,7 +18,7 @@ const BookingTablev2 = () => {
   }
 
   if (isLoading) {
-    return <h2>Loading...</h2>;
+    return <Spinner />;
   }
 
   if (data === []) return <h2>There are no bookings at the moment....</h2>;
@@ -46,7 +47,7 @@ const BookingTablev2 = () => {
         model: vehicles.model,
         registration: vehicles.registration,
       };
-      // console.log("newBookings:", newBookings);
+
       newBookings.push(destructedData);
     }
   }
@@ -98,15 +99,14 @@ const BookingTablev2 = () => {
 
   return (
     <Wrapper>
-      <main className="section">
-        <DataTable
-          columns={columns}
-          data={newBookings}
-          pagination
-          className="table_global"
-          customStyles={customStyles}
-        />
-      </main>
+      <Spinner />
+      <DataTable
+        columns={columns}
+        data={newBookings}
+        pagination
+        className="table_global"
+        customStyles={customStyles}
+      />
     </Wrapper>
   );
 };

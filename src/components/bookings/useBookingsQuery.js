@@ -28,7 +28,12 @@ const useBookingsQuery = () => {
 
   prefetchBookings();
 
-  return useQuery({ queryKey: ["bookings"], queryFn: getBookings });
+  const { isLoading, data, error } = useQuery({
+    queryKey: ["bookings"],
+    queryFn: getBookings,
+  });
+
+  return { data, isLoading, error };
 };
 
 export default useBookingsQuery;

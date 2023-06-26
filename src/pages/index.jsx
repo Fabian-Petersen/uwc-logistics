@@ -8,6 +8,7 @@ import Bookings from "./Bookings";
 import SingleVehicle from "./SingleVehicle";
 import Users from "./Users";
 import ProtectedRoute from "./ProtectedRoute";
+import Test from "./Test";
 
 export {
   Home,
@@ -20,4 +21,5 @@ export {
   SingleVehicle,
   Users,
   ProtectedRoute,
+  Test,
 };

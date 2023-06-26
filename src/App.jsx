@@ -9,6 +9,7 @@ import {
   SingleVehicle,
   Users,
   ProtectedRoute,
+  Test,
 } from "./pages/index";
 import Home from "../src/pages/Home";
 import { Navbar, Sidebar } from "./components";
@@ -42,6 +43,7 @@ const App = () => {
         <Sidebar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="test" element={<Test />} />
           {token ? <Route path="dashboard" element={<Dashboard />} /> : ""}
           {token ? (
             <Route path="createbooking" element={<CreateBooking />} />

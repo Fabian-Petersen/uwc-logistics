@@ -43,7 +43,7 @@ const Navbar = () => {
             <li className="welcome-title">
               <h3>
                 <span>Welcome, </span>
-                {token.user.user_metadata.name}
+                {/* {token.user.user_metadata.name} */}
               </h3>
             </li>
             <li onClick={handleLogout} className="nav-button btn-login">
