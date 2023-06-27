@@ -9,6 +9,8 @@ import {
   faBars,
   faPen,
   faReceipt,
+  faWrench,
+  faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const icons = {
@@ -22,6 +24,8 @@ export const icons = {
   faBars,
   faPen,
   faReceipt,
+  faWrench,
+  faChevronRight,
 };
 
 export default icons;

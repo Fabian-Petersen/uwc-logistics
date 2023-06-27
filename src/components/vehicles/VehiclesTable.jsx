@@ -11,90 +11,61 @@ import DataTable from "react-data-table-component";
 import { useState } from "react";
 
 const VehiclesTable = () => {
-  // const { isLoading, data: vehicles, error: dataError } = useVehiclesQuery();
+  const {
+    data: vehicles = [],
+    error: dataError,
+    isLoading,
+  } = useVehiclesQuery();
   const queryClient = useQueryClient();
 
   const [selectedRows, setSelectedRows] = useState(0);
   // const [toggleCleared, setToggleCleared] = useState(false);
 
-  // const handleRowSelected = useCallback(
-  //   (state) => {
-  //     setSelectedRows(state.selectedRows);
-  //     console.log(selectedRows);
-  //   },
-  //   [selectedRows]
-  // );
-
-  // const handleDelete = async (id) => {
-    // console.log("you clicked me");
+  const handleDelete = async (id) => {
+    console.log("you clicked me");
     // const deleteId = selectedRows.map((row) => row.id);
-    // mutate(...deleteId);
-    // const { data, error } = await supabase
-    //   .from("vehicles")
-    //   .delete()
-    //   .eq("id", id);
-    // if (data) {
-    //   toast.success("Vehicle Successfully Deleted");
-    //   // setVehicles(data);
-    // }
-    // if (error) {
-    //   toast.error("Cannot Delete Vehicle");
-    //   console.log(error);
-    //   return;
-    // }
-    // return data;
+    mutate("");
+
+    const { data, error } = await supabase
+      .from("vehicles")
+      .delete()
+      .eq("id", id);
+    if (data) {
+      toast.success("Vehicle Successfully Deleted");
+      // setVehicles(data);
+    }
+    if (error) {
+      toast.error("Cannot Delete Vehicle");
+      console.log(error);
+      return;
+    }
+    return data;
   };
 
   // update the data of vehicles once a vehicle was deleted using onSuccess and invalidate queries
-  // const { mutate } = useMutation({
-  //   mutationFn: (id) => handleDelete(id),
-  //   onSuccess: () => {
-  //     toast.success("Vehicle Successfully Deleted");
-  //     queryClient.invalidateQueries({
-  //       queryKey: ["vehicles"],
-  //     });
-  //   },
-  // });
+  const { mutate } = useMutation({
+    mutationFn: (id) => handleDelete(id),
+    onSuccess: () => {
+      toast.success("Vehicle Successfully Deleted");
+      queryClient.invalidateQueries({
+        queryKey: ["vehicles"],
+      });
+    },
+  });
 
-  // const handleRowSelected = ({ selectedRows }) => {
-    // console.log("selected Rows:", selectedRows);
-    // setSelectedRows(selectedRows);
-    // console.log(selectedRows);
-  // };
+  const handleRowSelected = ({ selectedRows }) => {
+    console.log("selected Rows:", selectedRows);
+    setSelectedRows(selectedRows);
+    console.log(selectedRows);
+  };
 
-  // const contextActions = useMemo(() => {
-  //   const handleDelete = () => {
-  //     if (
-  //       window.confirm(
-  //         `Are you sure you want to delete:\r ${selectedRows.map(
-  //           (r) => r.title
-  //         )}?`
-  //       )
-  //     ) {
-  //       setToggleCleared(!toggleCleared);
-  //       // setData(differenceBy(vehicles, selectedRows, "title"));
-  //     }
-  //   };
+  if (isLoading) {
+    return <Spinner />;
+  }
 
-  //   return (
-  //     <button
-  //       key="delete"
-  //       onClick={handleDelete}
-  //       style={{ backgroundColor: "red" }}
-  //       icon
-  //     >
-  //       Delete
-  //     </button>
-  //   );
-  // }, [selectedRows, toggleCleared]);
-
-  // if (isLoading) {
-    // return <Spinner />;
-  // }
-
-  // if (dataError) {
-    // console.log(dataError);
-  // }
+  if (dataError) {
+    console.log(dataError);
+  }
 
   // ======================================= Download the vehicles Data =================================== //
   // const actionsMemo = useMemo(
@@ -150,8 +121,6 @@ const VehiclesTable = () => {
           pagination
           customStyles={customStyles}
           onSelectedRowsChange={handleRowSelected}
-          // contextActions={contextActions}
-          // clearSelectedRows={toggleCleared}
           selectableRowsHighlight
           highlightOnHover
           pointerOnHover
@@ -271,6 +240,3 @@ export default VehiclesTable;
 //     });
 //   },
 // });
-
-
-x

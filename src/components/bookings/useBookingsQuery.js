@@ -1,8 +1,8 @@
 import supabase from "../../config/supabaseClient";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 const useBookingsQuery = () => {
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
 
   const getBookings = async () => {
     const { data, error } = await supabase
@@ -19,18 +19,19 @@ const useBookingsQuery = () => {
     return data;
   };
 
-  function prefetchBookings() {
-    return queryClient.prefetchQuery({
-      queryKey: ["bookings"],
-      queryFn: getBookings,
-    });
-  }
+  // function prefetchBookings() {
+  //   return queryClient.prefetchQuery({
+  //     queryKey: ["bookings"],
+  //     queryFn: getBookings,
+  //   });
+  // }
 
-  prefetchBookings();
+  // prefetchBookings();
 
   const { isLoading, data, error } = useQuery({
     queryKey: ["bookings"],
     queryFn: getBookings,
+    enabled: false,
   });
 
   return { data, isLoading, error };

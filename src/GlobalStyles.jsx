@@ -141,8 +141,9 @@ input,select {
   color:var(--clr-primary);
   }
   
-  input[type="checkbox"]:checked {
-    background-color: var(--clr-primary);
+  .form_global{
+    max-width:50%;
+    background-color: var(--clr-bg-form);
   }
 
 

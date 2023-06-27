@@ -1,6 +1,7 @@
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import navIcons from "./icons";
-const { faClipboard, faCab, faAreaChart, faPen, faReceipt, user } = navIcons;
+const { faClipboard, faCab, faAreaChart, faPen, faReceipt, user, faWrench } =
+  navIcons;
 
 export const navLinks = [
   {
@@ -17,6 +18,12 @@ export const navLinks = [
     name: "Return",
     path: "/return",
     icon: faReceipt,
+  },
+  {
+    name: "Maintenance",
+    path: "/maintenance",
+    icon: faWrench,
+    sublinks: ["Record Maintenance, View Maintence "],
   },
   {
     name: "Vehicles",

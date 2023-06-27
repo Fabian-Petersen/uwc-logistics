@@ -88,7 +88,20 @@ const AppProvider = ({ children }) => {
     status: "",
   });
 
-  //$ 15. ====== Vehicle Modal Component - State to open and close the modal to add a new vehicle  ====== //
+  //$ 15. ====== Register Maintenance Component - State of the initial form to register maintenance on a vehicle  ====== //
+  const [registerMaintenance, setRegisterMaintenance] = useState({
+    department: "",
+    vehicle: "",
+    registration: "",
+    date: "",
+    vendor: "",
+    invoice: "",
+    start_km: "",
+    cost: "",
+    type: "",
+  });
+
+  //$ 16. ====== Vehicle Modal Component - State to open and close the modal to add a new vehicle  ====== //
   const [openVehicleModal, setOpenVehicleModal] = useState(false);
   // State for the single image uplaod
   const [fileValue, setFileValue] = useState(null);
@@ -141,6 +154,8 @@ const AppProvider = ({ children }) => {
         setFileValue,
         fileValues,
         setFileValues,
+        registerMaintenance,
+        setRegisterMaintenance,
       }}
     >
       {children}

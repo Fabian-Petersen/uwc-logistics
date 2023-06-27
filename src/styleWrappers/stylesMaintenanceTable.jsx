@@ -33,17 +33,25 @@ const Wrapper = styled.main`
     padding: 1.5rem;
   }
 
-  .rdt_Pagination {
-    background-color: transparent;
-    border: none;
-    color: var(--clr-font-dark);
-  }
+  /* .rdt_TableBody:last-child {
+    border-bottom: none;
+  } */
 
   .kreUpT,
   .kDMEDp > * {
     background-color: transparent;
     color: var(--clr-font-dark);
     /* fill: var(--clr-font-dark); */
+  }
+
+  .rdt_Pagination {
+    background-color: transparent;
+    border: none;
+    color: var(--clr-font-dark);
+  }
+
+  .sc-kdBSHD .eIbmKX {
+    fill: blue;
   }
 `;
 

@@ -5,7 +5,11 @@ const useVehiclesQuery = () => {
   // const queryClient = useQueryClient();
 
   const getVehicles = async () => {
-    const { data, error } = await supabase.from("vehicles").select("*");
+    const { data, error } = await supabase
+      .from("vehicles")
+      .select(
+        "created_at, name, model, year, registration, start_km, images, department(name)"
+      );
 
     if (error) {
       console.error(error);

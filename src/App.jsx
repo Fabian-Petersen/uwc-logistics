@@ -8,6 +8,8 @@ import {
   Bookings,
   SingleVehicle,
   Users,
+  Maintenance,
+  RegisterMaintenance,
   ProtectedRoute,
   Test,
 } from "./pages/index";
@@ -64,6 +66,15 @@ const App = () => {
             ""
           )}
           {token ? <Route path="bookings" element={<Bookings />} /> : ""}
+          {token ? <Route path="maintenance" element={<Maintenance />} /> : ""}
+          {token ? (
+            <Route
+              path="maintenance/register"
+              element={<RegisterMaintenance />}
+            />
+          ) : (
+            ""
+          )}
           <Route path="register" element={<Register />} />
           <Route path="vehicles/:vehicleId" element={<SingleVehicle />} />
           <Route path="users" element={<Users />} />

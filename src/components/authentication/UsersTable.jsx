@@ -9,8 +9,6 @@ import Spinner from "../features/Spinner";
 const UsersTable = () => {
   const { data, isError, isLoading } = useUsersQuery();
 
-  // if (data === []) return <h2>There are no users at the moment....</h2>;
-
   if (isError) {
     return <h2>Error loading user data....</h2>;
   }
@@ -43,10 +41,6 @@ const UsersTable = () => {
       };
       newUsers.push(destructedData);
     }
-  }
-
-  if (!data || data.length === 0) {
-    return <h2>User Data Cannot Be Retrieved</h2>;
   }
 
   const columns = [

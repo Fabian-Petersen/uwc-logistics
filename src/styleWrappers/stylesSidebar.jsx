@@ -102,12 +102,24 @@ const Wrapper = styled.ul`
 
   .link {
     color: var(--clr-white);
-    font-size: 2.2rem;
+    font-size: 1.8rem;
   }
 
   .icon {
     margin-right: 1.2rem;
     font-size: 1.8rem;
   }
+
+  .sublink_icon {
+    margin-left: 1rem;
+  }
+
+  .sublinks {
+    color: white;
+  }
+
+  /* .sublinks:hover {
+    visibility: visible;
+  } */
 `;
 export default Wrapper;

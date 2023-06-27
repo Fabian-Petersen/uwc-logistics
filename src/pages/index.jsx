@@ -9,6 +9,8 @@ import SingleVehicle from "./SingleVehicle";
 import Users from "./Users";
 import ProtectedRoute from "./ProtectedRoute";
 import Test from "./Test";
+import Maintenance from "./Maintenance";
+import RegisterMaintenance from "./RegisterMaintenance";
 
 export {
   Home,
@@ -22,4 +24,6 @@ export {
   Users,
   ProtectedRoute,
   Test,
+  Maintenance,
+  RegisterMaintenance,
 };

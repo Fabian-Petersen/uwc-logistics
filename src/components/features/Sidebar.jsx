@@ -3,10 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
 import { navLinks } from "../../assets/data/navLinks";
 import Wrapper from "../../styleWrappers/stylesSidebar";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import icons from "../../assets/data/icons";
 
 const Sidebar = () => {
   // const { openNav, setOpenNav } = useGlobalContext();
-  // const { faBars, faXmark } = icons;
+  // const { faChevronRight } = icons;
 
   // const handleClick = () => {
   //   setOpenNav(!openNav);
@@ -29,7 +32,15 @@ const Sidebar = () => {
                     <FontAwesomeIcon icon={icon} />
                   </span>
                   {name}
+                  <span className="sublink_icon">
+                    {name === "Maintenance" ? (
+                      <FontAwesomeIcon icon={faChevronRight} />
+                    ) : (
+                      ""
+                    )}
+                  </span>
                 </NavLink>
+                {/* <span className="sublinks">{sublinks}</span> */}
               </li>
             );
           })}

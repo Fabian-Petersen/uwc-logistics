@@ -8,6 +8,7 @@ import Spinner from "../features/Spinner";
 const BookingTablev2 = () => {
   const { data, isLoading, isError } = useBookingsQuery();
 
+  console.log(data);
   // loop over the dates and format using date-fns
   if (data) {
     data.forEach((obj) => {
@@ -20,8 +21,6 @@ const BookingTablev2 = () => {
   if (isLoading) {
     return <Spinner />;
   }
-
-  if (data === []) return <h2>There are no bookings at the moment....</h2>;
 
   if (isError) {
     return <h2>Error loading bookings....</h2>;
@@ -99,7 +98,6 @@ const BookingTablev2 = () => {
 
   return (
     <Wrapper>
-      <Spinner />
       <DataTable
         columns={columns}
         data={newBookings}
