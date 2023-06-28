@@ -14,6 +14,7 @@ const Wrapper = styled.main`
     justify-content: space-evenly;
     gap: 0.5rem;
     overflow: hidden;
+    width: 100%;
   }
 
   img {

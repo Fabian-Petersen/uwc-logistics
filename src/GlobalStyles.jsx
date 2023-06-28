@@ -83,6 +83,13 @@ body {
   margin: 0 auto;
 }
 
+.title_subheading {
+  font-size: 3rem;
+  color:var(--clr-primary);
+  text-transform:uppercase;
+  margin: 0 auto;
+}
+
 .btn-global {
   background-color: var(--clr-primary);
   padding:0.3rem 1.3rem;

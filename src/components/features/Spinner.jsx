@@ -23,6 +23,7 @@ const Wrapper = styled.div`
     width: 100%;
     top: 25%;
     transform: translateY(-25%);
+    z-index: 1000;
   }
 
   .ring {

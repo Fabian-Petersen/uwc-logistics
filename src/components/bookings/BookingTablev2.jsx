@@ -90,10 +90,6 @@ const BookingTablev2 = () => {
       name: "Registration",
       selector: (row) => row.registration,
     },
-    // {
-    //   name: "Driver",
-    //   selector: (row) => row.driver,
-    // },
   ];
 
   return (

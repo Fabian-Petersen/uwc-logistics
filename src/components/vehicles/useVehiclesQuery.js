@@ -2,13 +2,11 @@ import supabase from "../../config/supabaseClient";
 import { useQuery } from "@tanstack/react-query";
 
 const useVehiclesQuery = () => {
-  // const queryClient = useQueryClient();
-
   const getVehicles = async () => {
     const { data, error } = await supabase
-      .from("vehicles")
+      .from("vehicles_actual")
       .select(
-        "created_at, name, model, year, registration, start_km, images, department(name)"
+        "created_at, id, model, year, registration, entity,fuel, start_km, department(name)"
       );
 
     if (error) {
@@ -19,19 +17,11 @@ const useVehiclesQuery = () => {
     return data;
   };
 
-  // function prefetchUsers() {
-  //   return queryClient.prefetchQuery({
-  //     queryKey: ["vehicles"],
-  //     queryFn: getVehicles,
-  //   });
-  // }
-
-  // prefetchUsers();
-
   const { isLoading, error, data } = useQuery({
-    queryKey: ["vehicles"],
+    queryKey: ["vehicles_actual"],
     queryFn: getVehicles,
   });
+
   return { isLoading, error, data };
 };
 

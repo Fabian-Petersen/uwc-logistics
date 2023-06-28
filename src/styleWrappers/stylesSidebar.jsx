@@ -19,12 +19,12 @@ const Wrapper = styled.ul`
   nav {
     /* color: black; */
     list-style-type: none;
-    position: absolute;
+    position: fixed;
     flex-direction: column;
     display: flex;
     top: 0;
     left: 0;
-    min-height: 100vh;
+    height: 100%;
     width: 28rem;
     gap: 2rem;
     transition: all 0.35s ease-in;
@@ -54,23 +54,10 @@ const Wrapper = styled.ul`
     top: 10%;
   }
 
-  .title hr {
+  /* .title hr {
     background-color: var(--clr-white);
   }
-
-  /* .bars {
-  border: 1px solid teal
-    position: absolute;
-    font-size: 3rem;
-    right: 2rem;
-    top: 1rem;
-    color: var(--clr-font-lightgrey);
-  }
-
-  .bars:hover {
-    scale: 1.1;
-    cursor: pointer;
-  } */
+*/
 
   ul {
     display: flex;
@@ -78,12 +65,11 @@ const Wrapper = styled.ul`
     list-style-type: none;
     gap: 2.5rem;
     justify-content: flex-start;
-    margin-top: 5rem;
     align-content: center;
     width: 100%;
     padding: 0;
     transition: all 0.35s ease-in;
-    /* border: 2px solid blue; */
+    /* border: 2px solid white; */
   }
 
   ul > li {
@@ -106,7 +92,7 @@ const Wrapper = styled.ul`
   }
 
   .icon {
-    margin-right: 1.2rem;
+    margin-right: 2.5rem;
     font-size: 1.8rem;
   }
 

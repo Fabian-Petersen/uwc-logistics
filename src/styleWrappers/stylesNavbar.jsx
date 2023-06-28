@@ -5,17 +5,28 @@ const Wrapper = styled.ul`
     display: flex;
     justify-content: flex-end;
     align-content: center;
-    position: absolute;
+    position: fixed;
     top: 0;
-    left: 0;
+    left: 28rem;
     height: 7rem;
-    width: 100%;
+    width: calc(100vw - 28rem);
     background-color: var(--clr-bg-form);
     padding: 0.5rem 2rem;
     gap: 2rem;
     border-bottom: 0.5px solid var(--clr-font-lightgrey);
     box-shadow: 0.3px 0 5px 1px rgba(0, 0, 0, 0.2);
     /* border: 1px solid yellow; */
+  }
+
+  .bars {
+    margin-right: auto;
+    font-size: 3rem;
+    color: var(--clr-font-darkgrey);
+  }
+
+  .bars:hover {
+    scale: 1.1;
+    cursor: pointer;
   }
 
   li img {
@@ -38,6 +49,7 @@ const Wrapper = styled.ul`
     gap: 1.5rem;
     flex: 1;
     justify-content: flex-end;
+    align-items: center;
     /* border: 1px solid red; */
   }
 
@@ -65,16 +77,14 @@ const Wrapper = styled.ul`
   }
 
   .btn-login {
-    color: var(--clr-bg-login);
-    background-color: none;
-    border: 1.5px solid var(--clr-bg-login);
+    color: var(--clr-white);
+    background-color: var(--clr-bg-login);
     margin-right: 0;
   }
 
   .btn-login:hover {
     color: var(--clr-white);
     background-color: var(--clr-bg-login);
-    /* border: none; */
   }
 
   .btn-signup {

@@ -1,11 +1,10 @@
 import { useState } from "react";
 import Wrapper from "../../styleWrappers/styleProductImages";
-import images from "../../assets/images/vehicleImages";
+import PropTypes from "prop-types";
 
-const ProductImages = () => {
+const ProductImages = ({ images }) => {
   const [main, setMain] = useState(images[0]);
 
-  //   console.log(imageUrl);
   return (
     <Wrapper>
       <div className="gallery">
@@ -26,6 +25,10 @@ const ProductImages = () => {
       </div>
     </Wrapper>
   );
+};
+
+ProductImages.propTypes = {
+  images: PropTypes.string.isRequired,
 };
 
 export default ProductImages;

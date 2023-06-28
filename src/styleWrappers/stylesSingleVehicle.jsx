@@ -10,9 +10,6 @@ const Wrapper = styled.main`
     padding: 2rem;
     margin-bottom: 2rem;
     border-radius: var(--radius-10);
-  }
-
-  .container ul {
     /* border: var(--border-r); */
   }
 
@@ -26,6 +23,14 @@ const Wrapper = styled.main`
   li {
     color: var(--clr-font-dark);
     font-size: 2rem;
+    text-transform: capitalize;
+  }
+
+  .vehicleDetails {
+    display: flex;
+    flex-direction: column;
+    /* border: var(--border-r); */
+    gap: 2rem;
   }
 
   .infoContainer {
@@ -37,18 +42,12 @@ const Wrapper = styled.main`
   }
 
   button {
-    width: 20rem;
-    position: absolute;
-    /* border: var(--border-g); */
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: 100%;
     transition: var(--transition-2);
   }
 
   button:hover {
     cursor: pointer;
-    transform: translate(-50%, -55%);
   }
 `;
 export default Wrapper;

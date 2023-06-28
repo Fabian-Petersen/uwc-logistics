@@ -40,7 +40,15 @@ const Sidebar = () => {
                     )}
                   </span>
                 </NavLink>
-                {/* <span className="sublinks">{sublinks}</span> */}
+                {name === "maintenance" ? (
+                  <ul className="submenu">
+                    <li>Enter Maintenance</li>
+                    <li>Maintenace List</li>
+                    <li>Insurance Claims</li>
+                  </ul>
+                ) : (
+                  ""
+                )}
               </li>
             );
           })}
