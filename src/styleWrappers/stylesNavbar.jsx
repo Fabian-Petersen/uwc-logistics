@@ -15,7 +15,29 @@ const Wrapper = styled.ul`
     gap: 2rem;
     border-bottom: 0.5px solid var(--clr-font-lightgrey);
     box-shadow: 0.3px 0 5px 1px rgba(0, 0, 0, 0.2);
-    /* border: 1px solid yellow; */
+  }
+
+  .navbar-home {
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 7rem;
+    width: 100vw;
+    /* background-color: var(--clr-bg-form); */
+    background-color: rgba(25, 25, 25, 0.75);
+    padding: 0.5rem 2rem;
+    gap: 2rem;
+    border-bottom: 0.5px solid var(--clr-font-lightgrey);
+    box-shadow: 0.3px 0 5px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  .bars-home {
+    margin-right: auto;
+    font-size: 3rem;
+    color: var(--clr-white);
   }
 
   .bars {
@@ -24,7 +46,8 @@ const Wrapper = styled.ul`
     color: var(--clr-font-darkgrey);
   }
 
-  .bars:hover {
+  .bars:hover,
+  .bars:home {
     scale: 1.1;
     cursor: pointer;
   }
@@ -51,6 +74,7 @@ const Wrapper = styled.ul`
     justify-content: flex-end;
     align-items: center;
     /* border: 1px solid red; */
+    /* border: 1px solid red; */
   }
 
   .nav-button {
@@ -62,6 +86,34 @@ const Wrapper = styled.ul`
     max-width: 10rem;
     flex: 1;
     text-align: center;
+  }
+
+  .userIcon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    /* background-color: lightgray; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-size: 1.5rem;
+    color: var(--clr-primary);
+  }
+
+  .userIcon::before {
+    content: "";
+    background-color: lightgray;
+    position: absolute;
+    border-radius: 50%;
+    width: 3rem;
+    aspect-ratio: 1/1;
+    z-index: -1;
+  }
+
+  .userIcon:hover {
+    scale: 1.05;
+    cursor: pointer;
   }
 
   .welcome-title {

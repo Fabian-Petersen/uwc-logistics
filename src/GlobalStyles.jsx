@@ -17,6 +17,7 @@ const GlobalStyles = createGlobalStyle`
   /* tables */
   --clr-bg-tableRow-light:rgba(161, 194, 241, 0.3);
   --clr-table-header:rgba(10, 110, 189, 0.85);
+  --clr-tag-cancel:#ff9b9b;
 
   /* navigation */
   --clr-bg-sideNav:#1c2534;

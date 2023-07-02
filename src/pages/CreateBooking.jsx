@@ -1,21 +1,22 @@
 import Wrapper from "../styleWrappers/stylesCreateBooking";
 import { useGlobalContext } from "../contextAPI";
 import supabase from "../config/supabaseClient";
-import { useNavigate } from "react-router-dom";
+import { format } from "date-fns";
+// import { useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 
 const CreateBooking = () => {
   const {
-    createNewBooking,
+    // createNewBooking,
     setCreateNewBooking,
-    token,
+    // token,
     setVehicles,
     vehicles,
   } = useGlobalContext();
 
   const queryClient = useQueryClient();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const fetchVehicles = async () => {
     const { data, error } = await supabase.from("vehicles").select("*");
@@ -40,7 +41,7 @@ const CreateBooking = () => {
       return {
         ...prevUserData,
         [e.target.name]: e.target.value,
-        driver: token.user.user_metadata.name,
+        // driver: token.user.user_metadata.name,
       };
     });
   };
@@ -50,7 +51,7 @@ const CreateBooking = () => {
       const { error } = await supabase.from("booking").insert(newData);
 
       if (error) {
-        console.log(error);
+        console.log(error.message);
       }
 
       // return data;
@@ -58,7 +59,7 @@ const CreateBooking = () => {
     {
       onSuccess: () => {
         toast.success("Your Booking Was Successful");
-        setTimeout(() => navigate("/dashboard"), 3000);
+        // setTimeout(() => navigate("/dashboard"), 3000);
         setCreateNewBooking("");
         queryClient.invalidateQueries({
           queryKey: ["bookings"],
@@ -69,10 +70,18 @@ const CreateBooking = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newData = createNewBooking;
-    mutate(newData);
+    // const newData = createNewBooking;
 
-    // console.log(newData);
+    const newData = {
+      vehicle: "CAA 456 346",
+      reason: "Testing booking app",
+      start_date: "2023-07-02",
+      return_date: "2023-07-03",
+      start_time: "08:00:03",
+      return_time: "12:00:00",
+    };
+
+    mutate(newData);
   };
 
   return (
@@ -118,6 +127,7 @@ const CreateBooking = () => {
                 type="date"
                 name="start_date"
                 onChange={handleChange}
+                // min={format(new Date(), "yyyy-MM-dd")}
               />
             </div>
             <div className="returnDate flex_column">

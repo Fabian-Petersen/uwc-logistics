@@ -6,9 +6,8 @@ import useBookingsQuery from "./useBookingsQuery";
 import Spinner from "../features/Spinner";
 
 const BookingTablev2 = () => {
-  const { data, isLoading, isError } = useBookingsQuery();
+  const { data, isLoading, error } = useBookingsQuery();
 
-  console.log(data);
   // loop over the dates and format using date-fns
   if (data) {
     data.forEach((obj) => {
@@ -22,39 +21,49 @@ const BookingTablev2 = () => {
     return <Spinner />;
   }
 
-  if (isError) {
+  if (error) {
     return <h2>Error loading bookings....</h2>;
   }
 
   // ===================================================== Destructure the bookings object ========================================= //
-  const newBookings = [];
+  // const newBookings = [];
 
-  for (const {
-    created_at,
-    reason,
-    start_date,
-    return_date,
-    vehicles,
-  } of data) {
-    if (vehicles && vehicles.name && vehicles.model && vehicles.registration) {
-      const destructedData = {
-        created_at,
-        reason,
-        start_date,
-        return_date,
-        name: vehicles.name,
-        model: vehicles.model,
-        registration: vehicles.registration,
-      };
+  //? This is the destructure of the bookings data with the vehicle information.
+  // for (const {
+  //   created_at,
+  //   reason,
+  //   start_date,
+  //   return_date,
+  //   vehicles,
+  // } of data) {
+  //   if (vehicles && vehicles.name && vehicles.model && vehicles.registration) {
+  //     const destructedData = {
+  //       created_at,
+  //       reason,
+  //       start_date,
+  //       return_date,
+  //       name: vehicles.name,
+  //      model: vehicles.model,
+  //       registration: vehicles.registration,
+  //     };
 
-      newBookings.push(destructedData);
-    }
-  }
+  // newBookings.push(destructedData);
+  // }
+  // }
+
+  // const { created_at, start_date, return_date, reason } = data;
 
   if (!data || data.length === 0) {
     toast.error("data cannot be retrieved");
     return <h2>Data Cannot Be Retrieved</h2>;
   }
+
+  const handleCancel = () => {
+    toast.success("Succuessfully Cancelled");
+  };
+
+  // connditional logic to show only if bookings not completed
+  const returned = true;
 
   // ================================================== Construct the columns for using the react data table with the newBookings array ========================= //
 
@@ -79,24 +88,40 @@ const BookingTablev2 = () => {
       sortable: true,
     },
     {
-      name: "Name",
-      selector: (row) => row.name,
+      name: "Action",
+      cell: () =>
+        returned && (
+          <button
+            className="btn-global btn-bookingsTable"
+            onClick={handleCancel}
+          >
+            Cancel
+          </button>
+        ),
+      ignoreRowClick: true,
+      allowOverflow: true,
+      button: true,
+      width: "12rem",
     },
-    {
-      name: "Model",
-      selector: (row) => row.model,
-    },
-    {
-      name: "Registration",
-      selector: (row) => row.registration,
-    },
+    // {
+    //   name: "Name",
+    //   selector: (row) => row.name,
+    // },
+    // {
+    //   name: "Model",
+    //   selector: (row) => row.model,
+    // },
+    // {
+    //   name: "Registration",
+    //   selector: (row) => row.registration,
+    // },
   ];
 
   return (
     <Wrapper>
       <DataTable
         columns={columns}
-        data={newBookings}
+        data={data}
         pagination
         className="table_global"
         customStyles={customStyles}

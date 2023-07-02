@@ -53,6 +53,22 @@ const Wrapper = styled.main`
   .sc-kdBSHD .eIbmKX {
     fill: blue;
   }
+
+  .btn-bookingsTable {
+    font-size: 1.2rem;
+    width: 8rem;
+    border-radius: 20px;
+    background-color: transparent;
+    border: 1.5px solid var(--clr-tag-cancel);
+    color: var(--clr-tag-cancel);
+    transition: all 0.2s ease-in;
+  }
+
+  .btn-bookingsTable:hover {
+    border: 1.5px solid var(--clr-tag-cancel);
+    background-color: var(--clr-tag-cancel);
+    color: var(--clr-white);
+  }
 `;
 
 export default Wrapper;

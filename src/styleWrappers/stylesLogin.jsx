@@ -2,10 +2,14 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   .login-container {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    width: 33rem;
+    width: 30rem;
     height: 45rem;
     background-color: rgba(0, 0, 0, 0.65);
     border-radius: 10px;

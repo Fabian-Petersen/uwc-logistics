@@ -37,7 +37,6 @@ const Wrapper = styled.div`
 
     50% {
       opacity: 0.5;
-      /* transform: translateY(5rem); */
     }
 
     100% {

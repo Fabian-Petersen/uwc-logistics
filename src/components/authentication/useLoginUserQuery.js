@@ -3,31 +3,31 @@ import { useQuery } from "@tanstack/react-query";
 import { useGlobalContext } from "../../contextAPI";
 
 const useLoginUserQuery = () => {
-  const { token } = useGlobalContext();
-  console.log(token);
-  const getUser = async () => {
-    const { data: user, error } = await supabase.auth.getUser();
+  const { userData } = useGlobalContext();
+  const loginUser = async (e) => {
+    e.preventDefault();
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: userData.email,
+        password: userData.password,
+      });
 
-    if (user) {
-      console.log(user);
-    }
+      if (data) {
+        console.log(data);
+      }
 
-    if (error) {
-      console.log("user cannot be retrieved");
+      if (error) throw Error;
+    } catch (error) {
+      console.log(error);
     }
-    return user;
   };
 
-  // function prefetchBookings() {
-  //   return queryClient.prefetchQuery({
-  //     queryKey: ["user"],
-  //     queryFn: getUser,
-  //   });
-  // }
+  const { isLoading, data, error } = useQuery({
+    queryKey: ["user"],
+    queryFn: loginUser,
+  });
 
-  // prefetchBookings();
-
-  return useQuery({ queryKey: ["user"], queryFn: getUser });
+  return { data, isLoading, error };
 };
 
 export default useLoginUserQuery;

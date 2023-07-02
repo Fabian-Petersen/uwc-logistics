@@ -8,22 +8,24 @@ const AppProvider = ({ children }) => {
   const [fetchError, setFetchError] = useState(null);
   const [users, setUsers] = useState([]);
 
+  const [user, setUser] = useState({});
+
+  // State to change the navbar from the full width on the home page to minus 28rem on the dashboard with the sidebar open
+  const [currentPage, setCurrentPage] = useState(true);
+
   //$ 2. ====== Login Component - State of the successful login token, initial value false ====== //
   const [token, setToken] = useState(false);
 
   //$ 3. ====== Register Component - State of the user on initial registration set to null ====== //
   const [registerUser, setRegisterUser] = useState({
-    name: "",
-    surname: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
 
   //$ 4. ====== Register Component - State of the user on initial registration set to null   ====== //
   const [loginUser, setLoginUser] = useState({
-    email: "",
-    password: "",
+    email: "fpetersen2@gmail.com",
+    password: "test",
   });
 
   //$ 5. ====== Register Component - State of the user on initial registration set to null   ====== //
@@ -156,6 +158,10 @@ const AppProvider = ({ children }) => {
         setFileValues,
         registerMaintenance,
         setRegisterMaintenance,
+        setCurrentPage,
+        currentPage,
+        user,
+        setUser,
       }}
     >
       {children}

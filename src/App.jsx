@@ -11,6 +11,7 @@ import {
   Maintenance,
   RegisterMaintenance,
   ProtectedRoute,
+  UserPage,
   Test,
 } from "./pages/index";
 import Home from "../src/pages/Home";
@@ -78,6 +79,7 @@ const App = () => {
           <Route path="register" element={<Register />} />
           <Route path="vehicles/:vehicleId" element={<SingleVehicle />} />
           <Route path="users" element={<Users />} />
+          <Route path="user" element={<UserPage />} />
         </Routes>
         <Toaster
           position="top-center"

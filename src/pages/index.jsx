@@ -11,6 +11,8 @@ import ProtectedRoute from "./ProtectedRoute";
 import Test from "./Test";
 import Maintenance from "./Maintenance";
 import RegisterMaintenance from "./RegisterMaintenance";
+import UserPage from "./UserPage";
+UserPage;
 
 export {
   Home,
@@ -26,4 +28,5 @@ export {
   Test,
   Maintenance,
   RegisterMaintenance,
+  UserPage,
 };

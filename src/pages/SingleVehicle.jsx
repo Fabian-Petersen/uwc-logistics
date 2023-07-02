@@ -1,15 +1,14 @@
 import { Link, useParams } from "react-router-dom";
 import Wrapper from "../styleWrappers/stylesSingleVehicle";
 import useVehiclesQuery from "../components/vehicles/useVehiclesQuery";
-// import { useGlobalContext } from "../contextAPI";
 import ProductImages from "../components/vehicles/ProductImages";
 import Spinner from "../components/features/Spinner";
-// import useVehiclesQuery from "../components/vehicles/useVehiclesQuery";
 
 const SingleVehicle = () => {
   const { vehicleId } = useParams();
   const { data: vehicles = [], isLoading, error } = useVehiclesQuery();
 
+  console.log(vehicleId);
   if (isLoading) {
     return <Spinner />;
   }
@@ -28,6 +27,9 @@ const SingleVehicle = () => {
   return (
     <Wrapper>
       <h1 className="section_title_global">
+        <Link className="link" to="/vehicles">
+          <button className="btn-global">Back to Vehicles</button>
+        </Link>
         {name} {model} / Registration: {registration}
       </h1>
       <main className="section_global">

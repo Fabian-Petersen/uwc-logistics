@@ -5,8 +5,6 @@ import useBookings from "../bookings/useBookings";
 
 const BookingTable = () => {
   const { bookings } = useBookings();
-  // console.log(bookings);
-  // const { bookingsData, setBookingsData } = useGlobalContext();
 
   return (
     <Wrapper>

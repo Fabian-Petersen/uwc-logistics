@@ -6,13 +6,13 @@ import "bootstrap/dist/css/bootstrap.css";
 import { useGlobalContext } from "../contextAPI";
 
 const Home = () => {
-  const { login } = useGlobalContext();
+  const { currentPage } = useGlobalContext();
   return (
     <Wrapper>
       <div className="section home">
-        {login ? "" : <h1>UWC TRANSPORT MANAGEMENT</h1>}
-        <Navbar />
-        {login ? <Login /> : ""}
+        <h1>UWC TRANSPORT MANAGEMENT</h1>
+        <Navbar currentPage={currentPage} />
+        <Login />
       </div>
     </Wrapper>
   );

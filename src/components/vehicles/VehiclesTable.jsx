@@ -1,20 +1,22 @@
 // import { useGlobalContext } from "../../contextAPI";
-import { toast } from "react-hot-toast";
+// import { toast } from "react-hot-toast";
 import Wrapper from "../../styleWrappers/stylesVehiclesTable";
 // import supabase from "../../config/supabaseClient";
 // import { useMutation, useQueryClient } from "@tanstack/react-query";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useVehiclesQuery from "./useVehiclesQuery";
 import Spinner from "../features/Spinner";
-// import { useGlobalContext } from "../../contextAPI";
 import DataTable from "react-data-table-component";
+// import { useParams } from "react-router-dom";
 
 import vehicleColumns from "../../assets/data/columnsVehicleTable";
 
-// import { useState } from "react";
-
 const VehiclesTable = () => {
-  const { data = [], error, isLoading } = useVehiclesQuery();
+  // const { data: vehicles } = useVehiclesQuery();
+  // console.log(vehicles);
+
+  const { data: vehicles, error, isLoading } = useVehiclesQuery();
+  // const { vehicleId } = useParams();
 
   // const queryClient = useQueryClient();
 
@@ -51,12 +53,6 @@ const VehiclesTable = () => {
   //   },
   // });
 
-  // const handleRowSelected = ({ selectedRows }) => {
-  //   console.log("selected Rows:", selectedRows);
-  //   setSelectedRows(selectedRows);
-  //   console.log(selectedRows);
-  // };
-
   if (isLoading) {
     return <Spinner />;
   }
@@ -74,63 +70,58 @@ const VehiclesTable = () => {
   // ===================================================== Destructure the Vehicles object ========================================= //
   const newVehicles = [];
 
-  for (const {
-    created_at,
-    model,
-    year,
-    registration,
-    entity,
-    fuel,
-    department,
-  } of data) {
-    if (department && department.name) {
-      const destructedData = {
-        created_at,
-        model,
-        year,
-        registration,
-        entity,
-        fuel,
-        department: department.name,
-      };
+  for (const { id, created_at, model, year, registration } of vehicles) {
+    const destructedData = {
+      id,
+      created_at,
+      model,
+      year,
+      registration,
+    };
 
-      newVehicles.push(destructedData);
-    }
+    newVehicles.push(destructedData);
   }
-
-  if (!data || data.length === 0) {
-    toast.error("data cannot be retrieved");
-    return <h2>Data Cannot Be Retrieved</h2>;
-  }
+  // if (!data || data.length === 0) {
+  //   toast.error("data cannot be retrieved");
+  //   return <h2>Data Cannot Be Retrieved</h2>;
+  // }
 
   //=========================== Columns imported from data/columnsVehicleTable ================== /
-  const [...columns] = vehicleColumns;
+
+  const button = {
+    name: "Action",
+    cell: (row) => (
+      <Link to={`/vehicles/${row.id}`}>
+        <button
+          className="btn-global btn-bookingsTable"
+          onClick={() => console.log(row.id)}
+        >
+          View
+        </button>
+      </Link>
+    ),
+    ignoreRowClick: true,
+    allowOverflow: true,
+    button: true,
+    width: "12rem",
+  };
+
+  const updatedColumns = [...vehicleColumns, button];
 
   return (
     <Wrapper>
       <main>
-        {/* <button
-          id="actionButton"
-          className={
-            selectedRows.length > 0 ? "showButton btn-global" : "hideButton"
-          }
-          onClick={handleDelete}
-        >
-          {selectedRows.length > 1 ? "Delete Rows" : "Delete Row"}
-        </button> */}
         <DataTable
           className="table_global"
           title="Vehicles"
-          columns={columns}
+          columns={updatedColumns}
           data={newVehicles}
           selectableRows
           pagination
           customStyles={customStyles}
-          // onSelectedRowsChange={handleRowSelected}
           selectableRowsHighlight
           highlightOnHover
           pointerOnHover
-          // actions={actionsMemo}
         />
       </main>
     </Wrapper>

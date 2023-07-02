@@ -3,11 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const useVehiclesQuery = () => {
   const getVehicles = async () => {
-    const { data, error } = await supabase
-      .from("vehicles_actual")
-      .select(
-        "created_at, id, model, year, registration, entity,fuel, start_km, department(name)"
-      );
+    const { data, error } = await supabase.from("vehicles_actual").select("*");
 
     if (error) {
       console.error(error);

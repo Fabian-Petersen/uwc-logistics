@@ -1,39 +1,35 @@
 import supabase from "../../config/supabaseClient";
 import { useQuery } from "@tanstack/react-query";
+import { useGlobalContext } from "../../contextAPI";
+// import useGetUserQuery from "../authentication/useGetUserQuery";
 
 const useBookingsQuery = () => {
-  // const queryClient = useQueryClient();
+  const { token } = useGlobalContext();
 
-  const getBookings = async () => {
+  const getBookings = async (userId) => {
+    console.log(userId);
+    if (!userId) {
+      throw new Error("User ID is undefined");
+    }
+
     const { data, error } = await supabase
       .from("booking")
-      .select(
-        "created_at, reason, return_date, start_date,  vehicles(name, registration, model)"
-      );
+      .select("*")
+      .eq("user_id", userId);
+
+    // "created_at, reason, return_date, start_date,  vehicles(name, registration, model)" // This works with the vehicles object in the returned data
 
     if (error) {
-      console.error(error);
-      throw new Error("bookings Could Not be loaded");
+      console.error(error.message);
     }
 
     return data;
   };
 
-  // function prefetchBookings() {
-  //   return queryClient.prefetchQuery({
-  //     queryKey: ["bookings"],
-  //     queryFn: getBookings,
-  //   });
-  // }
-
-  // prefetchBookings();
-
-  const { isLoading, data, error } = useQuery({
-    queryKey: ["bookings"],
-    queryFn: getBookings,
-    enabled: false,
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["userBookings"],
+    queryFn: () => getBookings(token?.user?.id),
   });
-
   return { data, isLoading, error };
 };
 
