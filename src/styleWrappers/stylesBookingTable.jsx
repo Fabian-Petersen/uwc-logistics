@@ -55,7 +55,7 @@ const Wrapper = styled.main`
   }
 
   .btn-bookingsTable {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     width: 8rem;
     border-radius: 20px;
     background-color: transparent;

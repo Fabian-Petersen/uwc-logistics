@@ -27,7 +27,12 @@ const Sidebar = () => {
             const { name, path, icon } = link;
             return (
               <li key={index}>
-                <NavLink to={path} className="link">
+                <NavLink
+                  to={path}
+                  className={
+                    window.location.pathname === path ? "active" : "link"
+                  }
+                >
                   <span className="icon">
                     <FontAwesomeIcon icon={icon} />
                   </span>

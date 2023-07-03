@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.main`
   .dashboard {
-    background-color: var(--clr-bg-form);
+    background-color: var(--clr-white);
     border-radius: 10px;
     height: 95%;
     padding: 2rem;
@@ -62,7 +62,7 @@ const Wrapper = styled.main`
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 2rem;
-    background-color: var(--clr-bg-form);
+    background-color: var(--clr-bg-dash);
   }
 
   .barChart,

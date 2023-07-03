@@ -7,18 +7,8 @@ import { faBars, faUser } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const {
-    setUserData,
-    setToken,
-    login,
-    setLogin,
-    token,
-    // userData,
-    currentPage,
-    setCurrentPage,
-  } = useGlobalContext();
+  const { setUserData, setToken, login, setLogin, token } = useGlobalContext();
   const navigate = useNavigate();
-
   const handleLogin = () => {
     setToken(true);
     setLogin(true);
@@ -32,8 +22,6 @@ const Navbar = () => {
       setLogin(!login);
       navigate("/");
       setToken(false);
-      setCurrentPage(true);
-
       if (error) throw error;
     } catch (error) {
       console.log(error);
@@ -45,14 +33,24 @@ const Navbar = () => {
     setLogin(true);
   };
 
+  //Define the current location the user is at to style elements accordingly.
+  const location = window.location.pathname;
   return (
     <Wrapper>
-      <ul className="navbar">
+      <ul className={location === "/" ? "navbar-home" : "navbar"}>
         {token ? (
           <ul className="navButtons">
-            <li className={currentPage ? "bars-home" : "bars"}>
+            <li className={location === "/" ? "bars-home" : "bars"}>
               <FontAwesomeIcon icon={faBars} />
             </li>
+            <li className="welcomeText">
+              Hello, <span>{token?.user?.user_metadata?.name}</span>
+            </li>
+            <Link to="/user">
+              <li className="userIcon">
+                <FontAwesomeIcon icon={faUser} />
+              </li>
+            </Link>
             <li
               onClick={handleLogout}
               className="btn-global nav-button btn-login"
@@ -62,11 +60,6 @@ const Navbar = () => {
           </ul>
         ) : (
           <ul className="navButtons">
-            <Link to="/user">
-              <li className="userIcon">
-                <FontAwesomeIcon icon={faUser} />
-              </li>
-            </Link>
             <li onClick={handleLogin} className="nav-button btn-login">
               Login
             </li>

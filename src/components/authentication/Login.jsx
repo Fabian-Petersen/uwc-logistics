@@ -47,7 +47,7 @@ const Login = () => {
     {
       onSuccess: (data) => {
         if (data.user && data.session !== null) {
-          toast.success("Login Successfull");
+          toast.success(`Welcome ${data?.user?.user_metadata?.name}`);
           setToken(data);
           sessionStorage.setItem("token", JSON.stringify(data));
           navigate("/dashboard");

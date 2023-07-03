@@ -46,8 +46,7 @@ const Wrapper = styled.ul`
     color: var(--clr-font-darkgrey);
   }
 
-  .bars:hover,
-  .bars:home {
+  .bars:hover {
     scale: 1.1;
     cursor: pointer;
   }
@@ -69,11 +68,10 @@ const Wrapper = styled.ul`
 
   .navButtons {
     display: flex;
-    gap: 1.5rem;
+    gap: 2.5rem;
     flex: 1;
     justify-content: flex-end;
     align-items: center;
-    /* border: 1px solid red; */
     /* border: 1px solid red; */
   }
 
@@ -97,8 +95,19 @@ const Wrapper = styled.ul`
     justify-content: center;
     align-items: center;
     position: relative;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: var(--clr-primary);
+  }
+
+  .welcomeText {
+    text-transform: capitalize;
+    color: var(--clr-white);
+    font-size: var(--font-welcomeText);
+  }
+
+  .welcomeText span {
+    color: var(--clr-primary);
+    font-size: calc(var(--font-welcomeText) + 0.2rem);
   }
 
   .userIcon::before {

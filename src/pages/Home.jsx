@@ -3,15 +3,13 @@ import Navbar from "../components/features/Navbar";
 import Login from "../components/authentication/Login";
 import Wrapper from "../styleWrappers/stylesHome";
 import "bootstrap/dist/css/bootstrap.css";
-import { useGlobalContext } from "../contextAPI";
 
 const Home = () => {
-  const { currentPage } = useGlobalContext();
   return (
     <Wrapper>
       <div className="section home">
         <h1>UWC TRANSPORT MANAGEMENT</h1>
-        <Navbar currentPage={currentPage} />
+        <Navbar />
         <Login />
       </div>
     </Wrapper>

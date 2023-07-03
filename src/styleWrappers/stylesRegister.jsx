@@ -4,29 +4,24 @@ const Wrapper = styled.form`
   form {
     display: flex;
     flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    padding: 2rem;
-    /* gap: 1.5rem; */
-    width: 30rem;
-    height: 40rem;
-    justify-content: space-between;
+    gap: 2.5rem;
+    width: 80%;
+    margin: 0 auto;
   }
 
-  input {
-    height: 3rem;
-    border-radius: 5px;
-    outline: none;
-    border: none;
-    padding-left: 1rem;
+  form label {
+    color: var(--clr-primary);
+    font-size: 1.8em;
+    height: 1.8rem;
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
   }
 
-  button {
-    height: 3.5rem;
-  }
-
-  button:hover {
-    cursor: pointer;
+  #signup_additional_info,
+  #signup input {
+    gap: rem;
+    margin-bottom: 1.5rem;
   }
 `;
 

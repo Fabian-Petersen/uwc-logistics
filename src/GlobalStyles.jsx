@@ -9,10 +9,17 @@ const GlobalStyles = createGlobalStyle`
   --clr-font-darkgrey:#6d6d6d;
   --clr-font-lightgrey:#babcbc;
   --clr-bg: #0077c80d;
+  --clr-link-active:#ffe569;
 
+  /*  Text Variables */
+  --font-welcomeText:clamp(1.5rem, 0.2rem,2rem);
+
+
+/* Dashboard  */
+--clr-bg-dash: ECF8F9; 
 
   /* forms */
-  --clr-bg-form: #f8f6f4;
+  --clr-bg-form: #A0BFE0;
 
   /* tables */
   --clr-bg-tableRow-light:rgba(161, 194, 241, 0.3);
@@ -112,7 +119,7 @@ body {
 
 .section_global {
   position: absolute;
-  top: 23%;
+  top: 20%;
   left: 25%;
   width: 70vw;
   height: 80vh;
@@ -140,18 +147,45 @@ body {
   display:table;
 }
 
-input,select {
+  
+//  ========================================== Form Styles // ========================================== //
+
+
+  .form_global{
+    max-width:80rem;
+    margin:0 auto;
+    background-color: var(--clr-bg-form);
+    padding:2rem;
+    border-radius:10px;
+  }
+
+  .form_title{
+  font-size: 3rem;
+  color:var(--clr-primary);
+  text-transform:uppercase;
+  margin: 1.5rem auto;
+  }
+
+  input,select {
   border:none;
   font-size: 1.5rem;
-  height: 5rem;
+  height: 4rem;
   border-radius: 5px;
   padding: 1rem;
   color:var(--clr-primary);
   }
-  
-  .form_global{
-    max-width:50%;
-    background-color: var(--clr-bg-form);
+
+  select {
+    appearance: none;
+  }
+
+  /* Custom arrow */
+  select {
+    background-image: url("src/assets/images/down-arrow-wght400.svg");
+    background-size: 24px;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 8px) center;
+    color: var(--clr-font-darkgrey);
   }
 
 
@@ -161,8 +195,16 @@ input:focus{
 
 label {
   font-size: 2rem;
-  height: 3.5rem;
-  /* border: 1px solid yellow; */
+  height: 3rem;
+  ${"" /* border: 1px solid yellow; */}
+  }
+
+  .form_button{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:2rem 0;
+    height:3.5rem;
   }
 
   img{
@@ -170,6 +212,15 @@ label {
     width:100%;
   }
 
+
+//  ========================================== Media Queries // ========================================== //
+
+
+@media screen and (min-width: 990px) {
+  .form_global{
+  max-width:60%;
+}
+}
 `;
 
 export default GlobalStyles;

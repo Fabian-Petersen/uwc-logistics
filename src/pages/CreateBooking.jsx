@@ -1,8 +1,8 @@
 import Wrapper from "../styleWrappers/stylesCreateBooking";
 import { useGlobalContext } from "../contextAPI";
 import supabase from "../config/supabaseClient";
-import { format } from "date-fns";
-// import { useNavigate } from "react-router-dom";
+// import { format } from "date-fns";
+import { useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 
@@ -16,7 +16,7 @@ const CreateBooking = () => {
   } = useGlobalContext();
 
   const queryClient = useQueryClient();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const fetchVehicles = async () => {
     const { data, error } = await supabase.from("vehicles").select("*");
@@ -58,8 +58,8 @@ const CreateBooking = () => {
     },
     {
       onSuccess: () => {
+        setTimeout(() => navigate("/dashboard"), 3000);
         toast.success("Your Booking Was Successful");
-        // setTimeout(() => navigate("/dashboard"), 3000);
         setCreateNewBooking("");
         queryClient.invalidateQueries({
           queryKey: ["bookings"],
@@ -86,9 +86,10 @@ const CreateBooking = () => {
 
   return (
     <Wrapper>
-      <h1 className="section_title_global">Book Vehicle</h1>
+      {/* <h1 className="section_title_global">Book Vehicle</h1> */}
       <main className="section_global">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="form_global">
+          <h2 className="form_title">Book a vehicle</h2>
           <div className="row">
             <div className="vehicle flex_column">
               <label>Select Vehicle</label>
@@ -127,7 +128,6 @@ const CreateBooking = () => {
                 type="date"
                 name="start_date"
                 onChange={handleChange}
-                // min={format(new Date(), "yyyy-MM-dd")}
               />
             </div>
             <div className="returnDate flex_column">

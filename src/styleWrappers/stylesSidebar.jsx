@@ -83,7 +83,8 @@ const Wrapper = styled.ul`
   ul > li:hover {
     background-color: var(--clr-primary);
     cursor: pointer;
-    border-left: 5px solid var(--clr-bg-login);
+    border-right: 5px solid var(--clr-link-active);
+    outline: none;
   }
 
   .link {
@@ -104,8 +105,9 @@ const Wrapper = styled.ul`
     color: white;
   }
 
-  /* .sublinks:hover {
-    visibility: visible;
-  } */
+  .active {
+    color: var(--clr-link-active);
+    font-size: 1.8rem;
+  }
 `;
 export default Wrapper;

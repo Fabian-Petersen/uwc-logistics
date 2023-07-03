@@ -96,7 +96,8 @@ const App = () => {
               maxWidth: "500px",
               padding: "16px 24px",
               backgroundColor: "var(--clr-bg-form)",
-              color: "var(--clr-font-dark)",
+              color: "var(--clr-white)",
+              textTransform: "Capitalize",
             },
           }}
         />
