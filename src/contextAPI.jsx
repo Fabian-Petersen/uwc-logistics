@@ -18,7 +18,7 @@ const AppProvider = ({ children }) => {
     name: "James",
     surname: "Roberts",
     role: "staff",
-    department: "Risk and Compliance",
+    department: "Campus Protection Services",
     id: "Staff3459",
     email: "test10@gmail.com",
     password: "Testing1234",
@@ -26,8 +26,8 @@ const AppProvider = ({ children }) => {
 
   //$ 4. ====== Register Component - State of the user on initial registration set to null   ====== //
   const [loginUser, setLoginUser] = useState({
-    email: "fpetersen2@gmail.com",
-    password: "test",
+    email: "",
+    password: "",
   });
 
   //$ 5. ====== Register Component - State of the user on initial registration set to null   ====== //
@@ -37,7 +37,10 @@ const AppProvider = ({ children }) => {
   const [login, setLogin] = useState(false);
 
   //$ 7. ====== Login Component - State updated from the login component using the data entered by the user   ====== //
-  const [userData, setUserData] = useState({ email: "", password: "" });
+  const [userData, setUserData] = useState({
+    email: "test11@gmail.com",
+    password: "Testing1234",
+  });
 
   //$ 8. ====== Fetch the vehicles data from supabase stored in the vehicles table ====== //
   const [vehicles, setVehicles] = useState([]);

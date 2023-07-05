@@ -13,12 +13,15 @@ const useVehiclesQuery = () => {
     return data;
   };
 
-  const { isLoading, error, data } = useQuery({
-    queryKey: ["vehicles_actual"],
+  const { isLoading, error, data, isError } = useQuery({
+    queryKey: ["vehiclesActual"],
     queryFn: getVehicles,
   });
 
-  return { isLoading, error, data };
+  // getVehicles();
+
+  console.log(data);
+  return { isLoading, error, data, isError };
 };
 
 export default useVehiclesQuery;

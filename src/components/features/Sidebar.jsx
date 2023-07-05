@@ -24,9 +24,9 @@ const Sidebar = () => {
         </div>
         <ul className="sidebarContainer">
           {navLinks.map((link, index) => {
-            const { name, path, icon } = link;
+            const { name, path, icon, sublinks = [] } = link;
             return (
-              <li key={index}>
+              <li key={index} className="menu_link_container open">
                 <NavLink
                   to={path}
                   className={
@@ -37,22 +37,23 @@ const Sidebar = () => {
                     <FontAwesomeIcon icon={icon} />
                   </span>
                   {name}
-                  <span className="sublink_icon">
-                    {name === "Maintenance" ? (
-                      <FontAwesomeIcon icon={faChevronRight} />
-                    ) : (
-                      ""
-                    )}
-                  </span>
+                  {sublinks.length > 0 && (
+                    <FontAwesomeIcon
+                      className="submenu_link_icon"
+                      icon={faChevronRight}
+                    />
+                  )}
                 </NavLink>
-                {name === "maintenance" ? (
-                  <ul className="submenu">
-                    <li>Enter Maintenance</li>
-                    <li>Maintenace List</li>
-                    <li>Insurance Claims</li>
+                {sublinks.length > 0 && (
+                  <ul className="submenu_container sublinks_open">
+                    {sublinks.map((item, subIndex) => (
+                      <li className="submenu" key={subIndex}>
+                        <NavLink className="submenu_link" to={item.path}>
+                          {item.name}
+                        </NavLink>
+                      </li>
+                    ))}
                   </ul>
-                ) : (
-                  ""
                 )}
               </li>
             );
@@ -62,5 +63,46 @@ const Sidebar = () => {
     </Wrapper>
   );
 };
-
 export default Sidebar;
+
+{
+  /* <nav>
+<div className="title">
+  <p>University of the Western Cape</p>
+  <p>Department of Transport</p>
+</div>
+<ul className="sidebarContainer">
+  {navLinks.map((link, index) => {
+    const { name, path, icon, sublinks = [] } = link;
+    return (
+      <li key={index} className="open">
+        <NavLink
+          to={path}
+          className={
+            window.location.pathname === path ? "active" : "link"
+          }
+        >
+          <span className="icon">
+            <FontAwesomeIcon icon={icon} />
+          </span>
+          {name}
+        </NavLink>
+        <ul className="sublinks_container">
+          {navLinks?.sublinks.map((item) => console.log(item))}
+
+          <li>
+            <NavLink className="sublink" to={sublinks.path}>
+              <span className="icon">
+                <FontAwesomeIcon icon={sublinks.icon} />
+              </span>
+              {sublinks.name}
+            </NavLink>
+          </li>
+          {/* } */
+}
+//         </ul>
+//       </li>
+//     );
+//   })}
+// </ul>
+// </nav> */}

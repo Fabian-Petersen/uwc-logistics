@@ -8,7 +8,7 @@ const useMaintenanceQuery = () => {
     const { data, error } = await supabase
       .from("maintenance")
       .select(
-        "created_at, date, type, vendor, cost, vehicles(name, registration, department(name))"
+        "created_at, date, type, vendor, cost, vehicles_actual(model, registration, department(department_name))"
       );
 
     if (error) {
@@ -19,22 +19,12 @@ const useMaintenanceQuery = () => {
     return data;
   };
 
-  // function prefetchBookings() {
-  //   return queryClient.prefetchQuery({
-  //     queryKey: ["bookings"],
-  //     queryFn: getBookings,
-  //   });
-  // }
-
-  // prefetchBookings();
-
-  const { isLoading, data, isError, error, isPreviousData } = useQuery({
+  const { isLoading, data, isError, error } = useQuery({
     queryKey: ["maintenance"],
     queryFn: getMaintenance,
-    // enabled: false,
   });
 
-  return { data, isLoading, error, isError, isPreviousData };
+  return { data, isLoading, error, isError };
 };
 
 export default useMaintenanceQuery;

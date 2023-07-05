@@ -1,24 +1,57 @@
-// import useDepartmentQuery from "../../hooks/useDepartmentQuery";
 import { useGlobalContext } from "../../contextAPI";
 import Wrapper from "../../styleWrappers/stylesRegisterMaintenanceItem";
+// import useVehiclesQuery from "../vehicles/useVehiclesQuery.js";
 // import useMaintenanceQuery from "./useMaintenanceQuery";
-import useVehiclesQuery from "../vehicles/useVehiclesQuery";
 // import { useNavigate } from "react-router-dom";
-import { useQueryClient, useMutation } from "@tanstack/react-query";
+import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import supabase from "../../config/supabaseClient";
 import { toast } from "react-hot-toast";
-
-// import useVehiclesQuery from "../vehicles/useVehiclesQuery";
 
 // ================================================== Add A New Maintenance Instance ================================================ //
 
 const RegisterMaintenanceItem = () => {
-  const { registerMaintenance, setRegisterMaintenance } = useGlobalContext();
-  const { data = [] } = useVehiclesQuery();
+  const { registerMaintenance, setRegisterMaintenance, token } =
+    useGlobalContext();
+
+  //? ========================= Function Logic to to register Maintenance to be done for a vehicle ================================= //
+  //$ 1. Use vehicles from the database to match to the user id to populate the vehilces in the form
+  // const { vehicles } = useVehiclesQuery();
+
+  const getVehicles = async () => {
+    const { data, error } = await supabase.from("vehicles_actual").select("*");
+
+    if (error) {
+      console.error(error);
+      throw new Error("vehicles could not be loaded");
+    }
+
+    // if (data) {
+    //   console.log(data);
+    // }
+
+    return data;
+  };
+
+  const { data: vehicles = [] } = useQuery({
+    queryKey: ["vehiclesActual"],
+    queryFn: getVehicles,
+  });
+
+  // console.log(vehicles);
+
+  //$ 2.  Get the department the user is in to match to the vehicles in the vehicles array.
+  const userDepartment = token?.user?.user_metadata.department;
+  console.log(userDepartment);
+
+  //$ 3.  Get the list of vehicles in the department the user is in.
+  const userDepartmentVehicles = vehicles.filter(
+    (item) => item.department === userDepartment
+  );
+
+  console.log(userDepartmentVehicles);
 
   const queryClient = useQueryClient();
-  // const navigate = useNavigate();
-
+  // // const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     const newData = registerMaintenance;
@@ -35,9 +68,11 @@ const RegisterMaintenanceItem = () => {
       }
     },
     {
-      onSuccess: () => {
-        toast.success("Your Booking Was Successful");
-        // setTimeout(() => navigate("/dashboard"), 3000);
+      onSuccess: (data) => {
+        if (!data && data !== 0) {
+          toast.success("Your Booking Was Successful");
+        }
+        //setTimeout(() => navigate("/dashboard"), 3000);
         // setRegisterMaintenance("");
         queryClient.invalidateQueries({
           queryKey: ["maintenance"],
@@ -46,18 +81,19 @@ const RegisterMaintenanceItem = () => {
     }
   );
 
-  const newMaintenance = [];
-  for (const { name, registration, department } of data) {
-    if (department.name) {
-      const destructedData = {
-        name,
-        registration,
-        department: department.name,
-      };
+  // // const newMaintenance = [];
+  // // for (const { name, registration, department } of data) {
+  // //   console.log(data);
+  // //   if (department.name) {
+  // //     const destructedData = {
+  // //       name,
+  // //       registration,
+  // //       department: department.name,
+  // //     };
 
-      newMaintenance.push(destructedData);
-    }
-  }
+  // //     newMaintenance.push(destructedData);
+  // //   }
+  // // }
 
   const handleChange = (e) => {
     setRegisterMaintenance((prevData) => {
@@ -69,47 +105,54 @@ const RegisterMaintenanceItem = () => {
     console.log(registerMaintenance);
   };
 
-  const vehicles = newMaintenance.filter(
-    (item) => item.department === registerMaintenance.department
-  );
-
+  // //All the departments on campus.
+  // console.log(allDepartments);
   // console.log(vehicles);
-  const handleFileChange = () => {};
+  // //Vehicles options available based on user department
 
-  const departments = Array.from(
-    new Set(newMaintenance.map((item) => item.department))
-  );
+  // console.log(userDepartmentVehicles);
 
+  // // console.log(vehicles);
+  // const handleFileChange = () => {};
+
+  //?All the departments from the database
+  // const departments = Array.from(
+  //   new Set(newMaintenance.map((item) => item.department))
+  // );
+  console.log(registerMaintenance);
   return (
     <Wrapper>
-      <h1 className="section_title_global">Create Maintenance Event</h1>
       <main className="section_global">
+        <h2 className="form_title">Create Maintenance Event</h2>
         <form className="form_global" onSubmit={handleSubmit}>
           <label>Department</label>
           <select name="department" onChange={handleChange}>
             <option value="" selected>
               Choose an option
             </option>
-            {departments.map((item, index) => {
+            {[].map((item, index) => {
               return <option key={index}>{item}</option>;
             })}
           </select>
           <label>Vehicle</label>
           <select name="vehicle" onChange={handleChange}>
-            <option value="" selected>
-              Choose an option
-            </option>
-            {vehicles.map((item, index) => {
-              return <option key={index}>{item.name}</option>;
+            <option>Choose an option</option>
+            {userDepartmentVehicles.map((item, index) => {
+              return (
+                <option value={item.model} key={index}>
+                  {item.model}
+                </option>
+              );
             })}
           </select>
-
           <label>Vehicle registration</label>
           <select name="registration" onChange={handleChange}>
             <option selected>Choose an option</option>
-            {vehicles.map((item, index) => {
-              return <option key={index}>{item.registration}</option>;
-            })}
+            {userDepartmentVehicles
+              .filter((item) => item.model === registerMaintenance.vehicle)
+              .map((item, index) => {
+                return <option key={index}>{item.registration}</option>;
+              })}
           </select>
 
           <label>Date of Service</label>
@@ -133,7 +176,7 @@ const RegisterMaintenanceItem = () => {
             name="file"
             accept="/*"
             multiple
-            onChange={handleFileChange}
+            onChange={() => {}}
           />
           <button type="submit" className="btn-global btn_main_register_submit">
             Submit

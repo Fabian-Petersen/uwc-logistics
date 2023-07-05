@@ -23,7 +23,14 @@ export const navLinks = [
     name: "Maintenance",
     path: "/maintenance",
     icon: faWrench,
-    sublinks: ["Record Maintenance, View Maintence "],
+    sublinks: [
+      {
+        name: "Record Maintenance",
+        path: "/maintenance/register",
+        icon: faPen,
+      },
+      { name: "View Maintence", path: "", icon: faWrench },
+    ],
   },
   {
     name: "Vehicles",

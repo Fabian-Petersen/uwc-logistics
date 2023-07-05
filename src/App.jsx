@@ -1,7 +1,7 @@
 // import Pages";
 import {
   Dashboard,
-  Register,
+  // Register,
   CreateBooking,
   Return,
   Vehicles,
@@ -13,6 +13,7 @@ import {
   ProtectedRoute,
   UserPage,
   Test,
+  Register,
 } from "./pages/index";
 import Home from "../src/pages/Home";
 import { Navbar, Sidebar } from "./components";
@@ -67,6 +68,7 @@ const App = () => {
             ""
           )}
           {token ? <Route path="bookings" element={<Bookings />} /> : ""}
+          {token ? <Route path="register" element={<Register />} /> : ""}
           {token ? <Route path="maintenance" element={<Maintenance />} /> : ""}
           {token ? (
             <Route
@@ -76,7 +78,6 @@ const App = () => {
           ) : (
             ""
           )}
-          <Route path="register" element={<Register />} />
           <Route path="vehicles/:vehicleId" element={<SingleVehicle />} />
           <Route path="users" element={<Users />} />
           <Route path="user" element={<UserPage />} />

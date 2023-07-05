@@ -15,22 +15,17 @@ const useDepartmentQuery = () => {
     return data;
   };
 
-  // function prefetchBookings() {
-  //   return queryClient.prefetchQuery({
-  //     queryKey: ["bookings"],
-  //     queryFn: getBookings,
-  //   });
-  // }
-
-  // prefetchBookings();
-
-  const { isLoading, data, isError, error } = useQuery({
-    queryKey: ["department"],
+  const {
+    isLoading,
+    data: departments,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["departments"],
     queryFn: getDepartments,
-    // enabled: false,
   });
 
-  return { data, isLoading, error, isError };
+  return { data: departments, isLoading, error, isError };
 };
 
 export default useDepartmentQuery;

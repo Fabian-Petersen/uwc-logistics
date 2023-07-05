@@ -8,9 +8,7 @@ import Spinner from "../features/Spinner";
 const MaintenanceTable = () => {
   const { data = [], isLoading, isError, error } = useMaintenanceQuery();
 
-  // console.log(data);
-
-  //   loop over the dates and format using date-fns
+  // loop over the dates and format using date-fns
   if (data) {
     data.forEach((obj) => {
       obj.created_at = format(new Date(obj.created_at), "dd/MM/yyyy");
@@ -39,17 +37,13 @@ const MaintenanceTable = () => {
     vendor,
     cost,
     type,
-    // vehicle,
-    // registration,
-    // department,
-    vehicles,
+    vehicles_actual,
   } of data) {
-    console.log(data);
     if (
-      vehicles &&
-      vehicles.name &&
-      vehicles.registration &&
-      vehicles.department.name
+      vehicles_actual &&
+      vehicles_actual.model &&
+      vehicles_actual.registration &&
+      vehicles_actual.department
     ) {
       const destructedData = {
         created_at,
@@ -59,21 +53,13 @@ const MaintenanceTable = () => {
         type,
         // vehicle,
         // registration,
-        // department,
-        name: vehicles.name,
-        registration: vehicles.registration,
-        department: vehicles.department.name,
+        department: vehicles_actual?.department?.department_name,
+        model: vehicles_actual.model,
+        registration: vehicles_actual.registration,
       };
       newMaintenance.push(destructedData);
     }
   }
-
-  console.log(newMaintenance);
-
-  //   if (newMaintenance === 0) {
-  // toast.error("data cannot be retrieved");
-  // return <h2>Data Cannot Be Retrieved</h2>;
-  //   }
 
   // ================================================== Construct the columns for using the react data table with the newBookings array ========================= //
 
@@ -91,7 +77,7 @@ const MaintenanceTable = () => {
     },
     {
       name: "Vehicle",
-      selector: (row) => row.name,
+      selector: (row) => row.model,
       sortable: true,
       width: "15rem",
     },
