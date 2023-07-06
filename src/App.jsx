@@ -16,7 +16,7 @@ import {
   Register,
 } from "./pages/index";
 import Home from "../src/pages/Home";
-import { Navbar, Sidebar } from "./components";
+import { Navbar, Sidebarv2 } from "./components";
 import { useGlobalContext } from "./contextAPI";
 
 //3rd party libraries
@@ -44,7 +44,7 @@ const App = () => {
       <ReactQueryDevtools initialIsOpen={false} />
       <Router>
         <Navbar />
-        <Sidebar />
+        <Sidebarv2 />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="test" element={<Test />} />

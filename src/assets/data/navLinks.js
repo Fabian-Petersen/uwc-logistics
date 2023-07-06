@@ -29,7 +29,7 @@ export const navLinks = [
         path: "/maintenance/register",
         icon: faPen,
       },
-      { name: "View Maintence", path: "", icon: faWrench },
+      { name: "View Maintenance", path: "/maintenance", icon: faWrench },
     ],
   },
   {

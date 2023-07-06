@@ -6,7 +6,8 @@ import useBookingsQuery from "./useBookingsQuery";
 import Spinner from "../features/Spinner";
 
 const BookingTablev2 = () => {
-  const { data, isLoading, error } = useBookingsQuery();
+  const { data = [], isLoading, error } = useBookingsQuery();
+  console.log(data);
 
   // loop over the dates and format using date-fns
   if (data) {
@@ -58,6 +59,7 @@ const BookingTablev2 = () => {
     return <h2>Data Cannot Be Retrieved</h2>;
   }
 
+  console.log(data);
   const handleCancel = () => {
     toast.success("Succuessfully Cancelled");
   };
@@ -72,6 +74,14 @@ const BookingTablev2 = () => {
       name: "Created",
       selector: (row) => row.created_at,
       sortable: true,
+    },
+    {
+      name: "Vehicle",
+      selector: (row) => row.model,
+    },
+    {
+      name: "Registration",
+      selector: (row) => row.registration,
     },
     {
       name: "Reason",

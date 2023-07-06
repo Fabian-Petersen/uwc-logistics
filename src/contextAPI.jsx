@@ -54,7 +54,7 @@ const AppProvider = ({ children }) => {
     registration: "",
     start_km: "",
     image: "",
-    status: "",
+    // status: "",
   });
 
   //$ 9. ====== Store the user token in the browser storage if login successful  ====== //
@@ -75,11 +75,8 @@ const AppProvider = ({ children }) => {
     return_date: "",
     start_time: "",
     return_time: "",
-    vehicleId: "",
-    userId: "",
-    driver: "",
+    model: "",
     registration: "",
-    status: "",
   });
 
   //$ 13. ====== Dashboard Component - State of the booking data stored on the server  ====== //

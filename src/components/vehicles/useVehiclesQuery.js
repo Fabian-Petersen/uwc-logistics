@@ -1,9 +1,19 @@
 import supabase from "../../config/supabaseClient";
 import { useQuery } from "@tanstack/react-query";
+import { useGlobalContext } from "../../contextAPI";
 
 const useVehiclesQuery = () => {
-  const getVehicles = async () => {
-    const { data, error } = await supabase.from("vehicles_actual").select("*");
+  const { token } = useGlobalContext();
+
+  const getVehicles = async (department) => {
+    const { data, error } = await supabase
+      .from("vehicles_actual")
+      .select("*")
+      .eq("department", department);
+
+    // if (data) {
+    //   console.log(department);
+    // }
 
     if (error) {
       console.error(error);
@@ -15,12 +25,12 @@ const useVehiclesQuery = () => {
 
   const { isLoading, error, data, isError } = useQuery({
     queryKey: ["vehiclesActual"],
-    queryFn: getVehicles,
+    queryFn: () => getVehicles(token?.user?.user_metadata?.department),
   });
 
   // getVehicles();
 
-  console.log(data);
+  // console.log(data);
   return { isLoading, error, data, isError };
 };
 

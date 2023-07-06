@@ -48,6 +48,11 @@ const Wrapper = styled.main`
     /* border: 1px solid green; */
   }
 
+  .reason {
+    width: 100%;
+    font-size: 1.8rem;
+  }
+
   .row {
     margin-bottom: 2rem;
   }
