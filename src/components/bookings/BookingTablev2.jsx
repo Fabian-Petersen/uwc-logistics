@@ -4,10 +4,11 @@ import DataTable from "react-data-table-component";
 import { toast } from "react-hot-toast";
 import useBookingsQuery from "./useBookingsQuery";
 import Spinner from "../features/Spinner";
+import useDeleteBookings from "./useDeleteBookings";
 
 const BookingTablev2 = () => {
   const { data = [], isLoading, error } = useBookingsQuery();
-  console.log(data);
+  const { mutate: mutateDelete } = useDeleteBookings();
 
   // loop over the dates and format using date-fns
   if (data) {
@@ -20,6 +21,10 @@ const BookingTablev2 = () => {
 
   if (isLoading) {
     return <Spinner />;
+  }
+
+  if (data === []) {
+    return <h2>You have made no bookings to view</h2>;
   }
 
   if (error) {
@@ -54,14 +59,14 @@ const BookingTablev2 = () => {
 
   // const { created_at, start_date, return_date, reason } = data;
 
-  if (!data || data.length === 0) {
+  if (!data) {
     toast.error("data cannot be retrieved");
     return <h2>Data Cannot Be Retrieved</h2>;
   }
 
-  console.log(data);
-  const handleCancel = () => {
+  const handleDelete = (row) => {
     toast.success("Succuessfully Cancelled");
+    mutateDelete(row?.id);
   };
 
   // connditional logic to show only if bookings not completed
@@ -99,11 +104,11 @@ const BookingTablev2 = () => {
     },
     {
       name: "Action",
-      cell: () =>
+      cell: (row) =>
         returned && (
           <button
             className="btn-global btn-bookingsTable"
-            onClick={handleCancel}
+            onClick={() => handleDelete(row)}
           >
             Cancel
           </button>
@@ -135,6 +140,7 @@ const BookingTablev2 = () => {
         pagination
         className="table_global"
         customStyles={customStyles}
+        selectableRows
       />
     </Wrapper>
   );

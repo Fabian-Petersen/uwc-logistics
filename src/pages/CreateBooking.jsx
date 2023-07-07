@@ -2,21 +2,25 @@ import Wrapper from "../styleWrappers/stylesCreateBooking";
 import { useGlobalContext } from "../contextAPI";
 import supabase from "../config/supabaseClient";
 // import { format } from "date-fns";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import { useRef } from "react";
 import useVehiclesQuery from "../components/vehicles/useVehiclesQuery";
+// import useAllBookingsQuery from "../components/bookings/useAllBookingsQuery";
+import useUpdateBookings from "../components/bookings/useUpdateBookings";
 
 const CreateBooking = () => {
   const formRef = useRef("");
-  const { data: vehicles = [] } = useVehiclesQuery();
-
-  const { createNewBooking, setCreateNewBooking, token } = useGlobalContext();
-  console.log(token);
+  const { token } = useGlobalContext();
+  const { data: vehicles } = useVehiclesQuery();
+  // const { data: booking } = useAllBookingsQuery();
+  const { mutate: updateUUID } = useUpdateBookings();
+  console.log(vehicles);
+  const { createNewBooking, setCreateNewBooking } = useGlobalContext();
 
   const queryClient = useQueryClient();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleChange = (e) => {
     setCreateNewBooking((prevUserData) => {
@@ -36,16 +40,20 @@ const CreateBooking = () => {
         toast.error("Your booking was unsuccessful");
       }
 
+      if (data) {
+        console.log(data);
+      }
+
       return data;
     },
     {
       onSuccess: (data) => {
         if (data !== null) {
           toast.success("Your Booking Was Successful");
-          setTimeout(() => navigate("/bookings"), 3000);
-          formRef.current.reset();
+          // setTimeout(() => navigate("/bookings"), 3000);
+          // formRef.current.reset();
           setCreateNewBooking("");
-          navigate("/dashboard");
+          // navigate("/dashboard");
         }
         queryClient.invalidateQueries({
           queryKey: ["bookings"],
@@ -58,24 +66,15 @@ const CreateBooking = () => {
     e.preventDefault();
     const newData = createNewBooking;
 
-    // const newData = {
-    //   registration: "CY 367 727",
-    //   model: "Toyota Corolla Quest",
-    //   reason: "Testing booking app 2",
-    //   start_date: "2023-07-06",
-    //   return_date: "2023-07-03",
-    //   start_time: "21:34:00",
-    //   return_time: "12:00:00",
-    // };
-
-    // console.log(newData.start_date);
-    console.log(newData);
-
+    updateUUID(token?.user?.id);
     mutate(newData);
+    // console.log(booking);
   };
 
+  //$ Get the list of vehicles within the department of the user.
   const vehicleRegistration = vehicles.filter((item) => {
     return item.model === createNewBooking.model;
+    // return item.model === newData.model;
   });
 
   return (

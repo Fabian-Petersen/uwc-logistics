@@ -4,7 +4,7 @@ import { useGlobalContext } from "../../contextAPI";
 
 const useVehiclesQuery = () => {
   const { token } = useGlobalContext();
-
+  console.log(token?.user);
   const getVehicles = async (department) => {
     const { data, error } = await supabase
       .from("vehicles_actual")
@@ -25,10 +25,10 @@ const useVehiclesQuery = () => {
 
   const { isLoading, error, data, isError } = useQuery({
     queryKey: ["vehiclesActual"],
-    queryFn: () => getVehicles(token?.user?.user_metadata?.department),
+    queryFn: () => getVehicles(token?.user?.user_metadata?.department || []),
   });
 
-  // getVehicles();
+  getVehicles();
 
   // console.log(data);
   return { isLoading, error, data, isError };

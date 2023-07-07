@@ -56,6 +56,12 @@ const Wrapper = styled.main`
   .row {
     margin-bottom: 2rem;
   }
+
+  textarea {
+    outline: none;
+    border: none;
+    border-radius: 5px;
+  }
 `;
 
 export default Wrapper;

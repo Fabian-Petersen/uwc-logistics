@@ -4,7 +4,7 @@ const Wrapper = styled.div`
   h1 {
     color: white;
     font-size: 7rem;
-    width: 80%;
+    width: 0 auto;
     /* border: 1px solid white; */
     animation: title-animation 2s ease-in 0.3s forwards;
     opacity: 0;
@@ -13,7 +13,7 @@ const Wrapper = styled.div`
     display: grid;
     place-items: center;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     margin: 0;
     padding: 0;
     position: relative;

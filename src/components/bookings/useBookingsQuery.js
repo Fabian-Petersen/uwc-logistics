@@ -4,7 +4,7 @@ import { useGlobalContext } from "../../contextAPI";
 
 const useBookingsQuery = () => {
   const { token } = useGlobalContext();
-  // console.log(token?.user?.id);
+  console.log(token?.user?.id);
 
   const getBookings = async (userId) => {
     if (!userId) {
@@ -20,11 +20,11 @@ const useBookingsQuery = () => {
       console.error(error.message);
     }
 
-    console.log(data);
+    // console.log(data);
     return data;
   };
 
-  getBookings();
+  // getBookings();
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["userBookings"],
